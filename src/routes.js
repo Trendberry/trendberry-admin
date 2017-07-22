@@ -1,8 +1,6 @@
 import React from 'react'
 import { Route } from 'react-router'
-import App from 'components/App'
-import PrivateRoutes from 'components/PrivateRoutes'
-import { HomePage } from 'components'
+import { HomePage, PrivateRoutes } from 'components'
 import {
   AppFrame,
 
