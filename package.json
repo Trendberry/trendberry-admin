@@ -7,20 +7,51 @@
     "start": "node .",
     "env:dev": "cross-env NODE_ENV=development",
     "env:prod": "cross-env NODE_ENV=production",
+    "env:example": "cross-env SOURCE=src-example",
+    "test": "jest",
+    "coverage": "npm test -- --coverage",
+    "postcoverage": "opn coverage/lcov-report/index.html",
+    "lint": "eslint src src-example private webpack.config.js",
+    "storybook": "start-storybook -p 9001 -c private/storybook",
+    "storybook:example": "npm run env:example -- npm run storybook",
+    "predev": "npm run prebuild",
     "dev": "npm run env:dev -- webpack-dev-server",
-    "build": "npm run env:prod -- webpack"
+    "dev:example": "npm run env:example -- npm run dev",
+    "build:clean": "rimraf \"dist/!(.git*|Procfile)**\"",
+    "build:copy": "copyfiles public/* public/**/* dist",
+    "prebuild": "npm run build:clean && npm run build:copy",
+    "build": "npm run env:prod -- webpack",
+    "build:example": "npm run env:example -- npm run build"
+  },
+  "jest": {
+    "moduleDirectories": [
+      "src",
+      "src-example",
+      "node_modules"
+    ],
+    "moduleNameMapper": {
+      "^.+\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/private/jest/fileMock.js",
+      "^(components|containers)$": "<rootDir>/private/jest/componentsMock.js",
+      "^(store|\\.\\.)\\/selectors$": "<rootDir>/private/jest/selectorsMock.js",
+      "^(store|\\.\\.)\\/actions$": "<rootDir>/private/jest/actionsMock.js"
+    }
   },
   "devDependencies": {
+    "@storybook/addon-actions": "^3.1.9",
+    "@storybook/react": "^3.1.9",
     "@webpack-blocks/dev-server2": "^0.4.0",
     "@webpack-blocks/webpack2": "^0.4.0",
     "babel-core": "^6.25.0",
+    "babel-jest": "^20.0.3",
     "babel-loader": "^7.1.1",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.24.1",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.6",
     "babel-preset-env": "^1.6.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-1": "^6.24.1",
+    "copyfiles": "^1.2.0",
     "cross-env": "^5.0.1",
+    "jest-cli": "^20.0.4",
     "webpack": "^3.3.0",
     "webpack-assets-by-type-plugin": "^0.1.0",
     "webpack-blocks-happypack": "^0.1.3",
