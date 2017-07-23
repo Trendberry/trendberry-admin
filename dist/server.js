@@ -4013,7 +4013,7 @@ var links = [{
 }, {
   to: '/pages',
   label: 'Pages',
-  icon: IconinsertDriveFile
+  icon: __WEBPACK_IMPORTED_MODULE_18_material_ui_icons_InsertDriveFile___default.a
 }];
 
 var AppDrawer = function AppDrawer(_ref2) {
