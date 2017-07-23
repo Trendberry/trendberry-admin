@@ -106,7 +106,7 @@ const links = [
   {
     to: '/pages',
     label: 'Pages',
-    icon: IconinsertDriveFile,
+    icon: IconInsertDriveFile,
   },
 ]
 
