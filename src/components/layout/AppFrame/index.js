@@ -121,7 +121,7 @@ const styleSheet = createStyleSheet('AppFrame', theme => ({
   },
 }))
 
-const AppFrame = ({ classes, route, title, drawerOpen, handleDrawerClose, handleDrawerToggle, inProp }) => (
+const AppFrame = ({ classes, route, title, drawerOpen, handleDrawerClose, handleDrawerToggle }) => (
   <div className={classes.root}>
     <AppBar position="fixed">
       <Toolbar>
@@ -136,7 +136,7 @@ const AppFrame = ({ classes, route, title, drawerOpen, handleDrawerClose, handle
       onRequestClose={handleDrawerClose}
       drawerOpen={drawerOpen}
     />
-    <AppContent inProp={inProp}>
+    <AppContent>
       {renderRoutes(route.routes)}
     </AppContent>
   </div>

@@ -1,5 +1,4 @@
 import React from 'react'
-import { Route } from 'react-router'
 import PrivateRoutes from 'components/PrivateRoutes'
 import { HomePage } from 'components'
 import {
@@ -20,22 +19,6 @@ import {
   VendorListPage,
 } from 'containers'
 import { Link } from 'react-router-dom'
-
-const Status = ({ code, children }) => (
-  <Route render={({ staticContext }) => {
-    if (staticContext)
-      staticContext.status = code
-    return children
-  }} />
-)
-
-const NotFound = () => (
-  <Status code={404}>
-    <div>
-      <h1>Sorry, can’t find that.</h1>
-    </div>
-  </Status>
-)
 
 const routes = [
   {
@@ -110,7 +93,7 @@ const routes = [
             title: 'Settings',
           },
           {
-            component: NotFound,
+            component: () => (<div>404 not found</div>),
           },
         ],
       },
@@ -120,12 +103,12 @@ const routes = [
         exact: true,
       },
       {
-        component: NotFound,
+        component: () => (<div>404 not found</div>),
       },
     ],
   },
   {
-    component: NotFound,
+    component: () => (<div>404 not found</div>),
   },
 ]
 

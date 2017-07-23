@@ -120,8 +120,9 @@ app.use((req, res, next) => {
     .then(() => {
       const content = renderApp({
         context,
-        history, location,
-        store: configureStore(store.getState(), { api: apiInstance }, history)
+        history,
+        location,
+        store: configureStore(store.getState(), { api: apiInstance }, history),
       })
       const initialState = store.getState()
 

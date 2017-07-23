@@ -36,9 +36,8 @@ class SigninPageContainer extends Component {
   }
 
   render() {
-
     const { refferer } = parse(this.props.location.search.substring(1))
-    const { from } = (refferer && { from: { pathname: refferer } } ) || this.props.location.state || { from: { pathname: '/' } }
+    const { from } = (refferer && { from: { pathname: refferer } }) || this.props.location.state || { from: { pathname: '/' } }
     const { redirectToReferrer } = this.state
 
     if (redirectToReferrer) {

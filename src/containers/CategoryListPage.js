@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
-import { fromResource, fromCategory, fromEntities } from 'store/selectors'
+import { fromResource, fromEntities } from 'store/selectors'
 import { resourceListReadRequest, resourceDeleteRequest } from 'store/actions'
 import { CategoryListPage } from 'components'
 
@@ -24,17 +24,15 @@ class CategoryListPageContainer extends Component {
   }
 
   handleOpenDeleteDialog = (rowIndex, event) => {
-    this.setState({ open: true, anchorEl: event.currentTarget, selectedIndex: rowIndex });
+    this.setState({ open: true, anchorEl: event.currentTarget, selectedIndex: rowIndex })
   }
 
-  handleDeleteCategory = id => {
+  handleDeleteCategory = (id) => {
     this.handleRequestCloseDialog()
-
     this.props.deleteCategoryRequest(id)
-    .then((category) => {
-      // console.log(category)
-    })
-
+    // .then((category) => {
+    //   // console.log(category)
+    // })
   }
 
   handleRequestCloseDialog = () => {
@@ -47,15 +45,13 @@ class CategoryListPageContainer extends Component {
 
 }
 
-const mapStateToProps = (state) => {
-  return ({
-    list: fromEntities.getList(state, 'categories', fromResource.getList(state, 'categories')),
-    count: fromResource.getCount(state, 'categories'),
-  })
-}
+const mapStateToProps = state => ({
+  list: fromEntities.getList(state, 'categories', fromResource.getList(state, 'categories')),
+  count: fromResource.getCount(state, 'categories'),
+})
 
-const mapDispatchToProps = (dispatch) => ({
-  deleteCategoryRequest: (id) => dispatch(resourceDeleteRequest('categories', id))
+const mapDispatchToProps = dispatch => ({
+  deleteCategoryRequest: id => dispatch(resourceDeleteRequest('categories', id)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CategoryListPageContainer)

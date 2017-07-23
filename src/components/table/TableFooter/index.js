@@ -119,11 +119,11 @@ class TableFooter extends Component {
     delete query._page
 
     return {
-    ...location,
-    search: `?${stringify({
-      ...query,
-    })}`,
-  }
+      ...location,
+      search: `?${stringify({
+        ...query,
+      })}`,
+    }
   }
 
   render() {

@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import submit from 'redux-form-submit'
-import Helmet from 'react-helmet'
 import { resourceDetailReadRequest } from 'store/actions'
 
 import { CategoryUpdatePage } from 'components'
@@ -18,6 +17,10 @@ class CategoryUpdatePageContainer extends Component {
 
   static get({ store, match }) {
     return store.dispatch(resourceDetailReadRequest('categories', match.params.id))
+  }
+
+  static propTypes = {
+    match: PropTypes.object.isRequired,
   }
 
   render() {

@@ -31,7 +31,7 @@ export const styleSheet = createStyleSheet('CategoryListPage', {
     'tr:hover &': {
       display: 'block',
     },
-  }
+  },
 })
 
 const CategoryListPage = ({ selectedIndex, classes, count, deleteCategory, list, open, openDeleteDialog, onRequestCloseDialog }) => (
@@ -82,7 +82,7 @@ const CategoryListPage = ({ selectedIndex, classes, count, deleteCategory, list,
               <MuiIconButton aria-label={`Edit category ${list[rowIndex].name}`} to={`/categories/${list[rowIndex]._id}`} component={Link}>
                 <MuiModeEditIcon />
               </MuiIconButton>
-              <MuiIconButton aria-label={`Detele category ${list[rowIndex].name}`} onClick={(event) => openDeleteDialog(rowIndex, event)}>
+              <MuiIconButton aria-label={`Detele category ${list[rowIndex].name}`} onClick={event => openDeleteDialog(rowIndex, event)}>
                 <MuiDeleteIcon />
               </MuiIconButton>
             </div>
@@ -107,8 +107,17 @@ const CategoryListPage = ({ selectedIndex, classes, count, deleteCategory, list,
 )
 
 CategoryListPage.propTypes = {
+  classes: PropTypes.object.isRequired,
   count: PropTypes.number.isRequired,
+  deleteCategory: PropTypes.func.isRequired,
   list: PropTypes.arrayOf(PropTypes.object).isRequired,
+  onRequestCloseDialog: PropTypes.func.isRequired,
+  open: PropTypes.bool.isRequired,
+  openDeleteDialog: PropTypes.func.isRequired,
+  selectedIndex: PropTypes.string,
 }
 
+CategoryListPage.defulatProps = {
+  selectedIndex: null,
+}
 export default withStyles(styleSheet)(CategoryListPage)

@@ -5,7 +5,6 @@ import React from 'react'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import { ConnectedRouter } from 'react-router-redux'
-import { BrowserRouter } from 'react-router-dom'
 import createHistory from 'history/createBrowserHistory'
 import Cookies from 'universal-cookie'
 

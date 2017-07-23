@@ -1,4 +1,3 @@
-// https://github.com/diegohaz/arc/wiki/Example-redux-modules#entities
 import { normalize } from 'normalizr'
 import { env } from 'config'
 import { entitiesReceive } from './actions'

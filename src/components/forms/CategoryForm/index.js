@@ -19,7 +19,7 @@ const styleSheet = createStyleSheet('CategoryForm', {
   },
 })
 
-const CategoryForm = ({ id, classes, handleSubmit, pristine, submitting, ...props }) => {
+const CategoryForm = ({ id, classes, handleSubmit, submitting }) => {
   return (
     <MuiPaper component={Form} onSubmit={handleSubmit} method="POST">
       <MuiToolbar>
@@ -36,8 +36,8 @@ const CategoryForm = ({ id, classes, handleSubmit, pristine, submitting, ...prop
           </Grid>
           <Grid item sm={4}>
             <Field name="slug" type="text" label="Slug" component={TextField} />
-            <Field name={"meta.title"} type="text" label="Meta Title" component={TextField} />
-            <Field name={"meta.description"} label="Meta Description" component={TextField} />
+            <Field name="meta.title" type="text" label="Meta Title" component={TextField} />
+            <Field name="meta.description" label="Meta Description" component={TextField} />
           </Grid>
         </Grid>
       </div>
@@ -49,8 +49,15 @@ const CategoryForm = ({ id, classes, handleSubmit, pristine, submitting, ...prop
 }
 
 CategoryForm.propTypes = {
+  classes: PropTypes.object.isRequired,
   handleSubmit: PropTypes.func.isRequired,
+  id: PropTypes.string,
   submitting: PropTypes.bool,
 }
+
+CategoryForm.defaultProps = {
+  id: null,
+}
+
 
 export default withStyles(styleSheet)(CategoryForm)

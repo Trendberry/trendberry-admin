@@ -5,7 +5,6 @@ import get from 'lodash/get'
 import { initialState, getResourceState, getList, getCount, getDetail } from './selectors'
 import {
   RESOURCE_CREATE_SUCCESS,
-  RESOURCE_LIST_READ_REQUEST,
   RESOURCE_LIST_READ_SUCCESS,
   RESOURCE_DETAIL_READ_REQUEST,
   RESOURCE_DETAIL_READ_SUCCESS,
@@ -27,7 +26,6 @@ const updateOrDeleteReducer = (state, { type, payload, meta }) => {
 
   switch (type) {
     case RESOURCE_UPDATE_SUCCESS:
-    console.log(payload)
       return {
         ...state,
         [resource]: {
@@ -77,15 +75,6 @@ export default (state = initialState, { type, payload, payloadCount, meta }) => 
         },
       }
 
-    // case RESOURCE_LIST_READ_REQUEST:
-    //   return {
-    //     ...state,
-    //     [resource]: {
-    //       ...getResourceState(state, resource),
-    //       list: getList(initialState, resource),
-    //       count: getCount(initialState, resource),
-    //     },
-    //   }
     case RESOURCE_LIST_READ_SUCCESS:
       return {
         ...state,

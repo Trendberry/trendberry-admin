@@ -31,7 +31,7 @@ export const styleSheet = createStyleSheet('ShopListPage', {
     'tr:hover &': {
       display: 'block',
     },
-  }
+  },
 })
 
 const ShopListPage = ({ selectedIndex, classes, count, deleteShop, list, open, openDeleteDialog, onRequestCloseDialog }) => (
@@ -82,7 +82,7 @@ const ShopListPage = ({ selectedIndex, classes, count, deleteShop, list, open, o
               <MuiIconButton aria-label={`Edit shop ${list[rowIndex].name}`} to={`/shops/${list[rowIndex]._id}`} component={Link}>
                 <MuiModeEditIcon />
               </MuiIconButton>
-              <MuiIconButton aria-label={`Detele shop ${list[rowIndex].name}`} onClick={(event) => openDeleteDialog(rowIndex, event)}>
+              <MuiIconButton aria-label={`Detele shop ${list[rowIndex].name}`} onClick={event => openDeleteDialog(rowIndex, event)}>
                 <MuiDeleteIcon />
               </MuiIconButton>
             </div>
@@ -107,8 +107,18 @@ const ShopListPage = ({ selectedIndex, classes, count, deleteShop, list, open, o
 )
 
 ShopListPage.propTypes = {
+  classes: PropTypes.object.isRequired,
   count: PropTypes.number.isRequired,
+  deleteShop: PropTypes.func.isRequired,
   list: PropTypes.arrayOf(PropTypes.object).isRequired,
+  onRequestCloseDialog: PropTypes.func.isRequired,
+  open: PropTypes.bool.isRequired,
+  openDeleteDialog: PropTypes.func.isRequired,
+  selectedIndex: PropTypes.string,
+}
+
+ShopListPage.defulatProps = {
+  selectedIndex: null,
 }
 
 export default withStyles(styleSheet)(ShopListPage)

@@ -5,7 +5,7 @@ import { withStyles, createStyleSheet } from 'material-ui/styles'
 import MuiInput, { InputLabel as MuiInputLabel } from 'material-ui/Input'
 import MuiFormControl from 'material-ui/Form/FormControl'
 
-const styleSheet = createStyleSheet('TextField', (theme) => ({
+const styleSheet = createStyleSheet('TextField', theme => ({
   root: {
     width: '100%',
   },

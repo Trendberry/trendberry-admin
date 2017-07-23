@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { withStyles, createStyleSheet } from 'material-ui/styles'
-import { Field } from 'redux-form'
+import { Form, Field } from 'redux-form'
 import MuiButton from 'material-ui/Button'
 
 import Grid from 'material-ui/Grid'
@@ -19,9 +19,9 @@ const styleSheet = createStyleSheet('ShopForm', {
   },
 })
 
-const ShopForm = ({ id, classes, handleSubmit, pristine, submitting }) => {
+const ShopForm = ({ id, classes, handleSubmit, submitting }) => {
   return (
-    <MuiPaper component="form" onSubmit={handleSubmit} method="POST">
+    <MuiPaper component={Form} onSubmit={handleSubmit} method="POST">
       <MuiToolbar>
         <MuiTypography type="headline">{id ? 'Update' : 'Create'} shop</MuiTypography>
       </MuiToolbar>
@@ -36,8 +36,8 @@ const ShopForm = ({ id, classes, handleSubmit, pristine, submitting }) => {
           </Grid>
           <Grid item sm={4}>
             <Field name="slug" type="text" label="Slug" component={TextField} />
-            <Field name={"meta.title"} type="text" label="Meta Title" component={TextField} />
-            <Field name={"meta.description"} label="Meta Description" component={TextField} />
+            <Field name="meta.title" type="text" label="Meta Title" component={TextField} />
+            <Field name="meta.description" label="Meta Description" component={TextField} />
           </Grid>
         </Grid>
       </div>
@@ -49,8 +49,14 @@ const ShopForm = ({ id, classes, handleSubmit, pristine, submitting }) => {
 }
 
 ShopForm.propTypes = {
+  classes: PropTypes.object.isRequired,
   handleSubmit: PropTypes.func.isRequired,
+  id: PropTypes.string,
   submitting: PropTypes.bool,
+}
+
+ShopForm.defaultProps = {
+  id: null,
 }
 
 export default withStyles(styleSheet)(ShopForm)
