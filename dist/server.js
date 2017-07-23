@@ -2324,7 +2324,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_material_ui_IconButton___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_material_ui_IconButton__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_material_ui_Input_Input__ = __webpack_require__(183);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_material_ui_Input_Input___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_material_ui_Input_Input__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_material_ui_icons_Search__ = __webpack_require__(172);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_material_ui_icons_Search__ = __webpack_require__(173);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_material_ui_icons_Search___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_material_ui_icons_Search__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_material_ui_icons_Close__ = __webpack_require__(163);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_material_ui_icons_Close___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_material_ui_icons_Close__);
@@ -3898,18 +3898,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_material_ui_icons_Folder___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11_material_ui_icons_Folder__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_material_ui_icons_Dashboard__ = __webpack_require__(164);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_material_ui_icons_Dashboard___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12_material_ui_icons_Dashboard__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_material_ui_icons_LocalMall__ = __webpack_require__(169);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_material_ui_icons_LocalMall__ = __webpack_require__(170);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_material_ui_icons_LocalMall___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13_material_ui_icons_LocalMall__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_material_ui_icons_Settings__ = __webpack_require__(173);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_material_ui_icons_Settings__ = __webpack_require__(174);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_material_ui_icons_Settings___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14_material_ui_icons_Settings__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_material_ui_icons_Store__ = __webpack_require__(175);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_material_ui_icons_Store__ = __webpack_require__(176);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_material_ui_icons_Store___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_15_material_ui_icons_Store__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_material_ui_icons_People__ = __webpack_require__(171);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_material_ui_icons_People__ = __webpack_require__(172);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_material_ui_icons_People___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_16_material_ui_icons_People__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_material_ui_icons_Stars__ = __webpack_require__(174);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_material_ui_icons_Stars__ = __webpack_require__(175);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_material_ui_icons_Stars___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_17_material_ui_icons_Stars__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18_material_ui_icons_insertDriveFile__ = __webpack_require__(176);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18_material_ui_icons_insertDriveFile___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_18_material_ui_icons_insertDriveFile__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18_material_ui_icons_InsertDriveFile__ = __webpack_require__(167);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18_material_ui_icons_InsertDriveFile___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_18_material_ui_icons_InsertDriveFile__);
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
@@ -4013,7 +4013,7 @@ var links = [{
 }, {
   to: '/pages',
   label: 'Pages',
-  icon: __WEBPACK_IMPORTED_MODULE_18_material_ui_icons_insertDriveFile___default.a
+  icon: IconinsertDriveFile
 }];
 
 var AppDrawer = function AppDrawer(_ref2) {
@@ -4108,7 +4108,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_AppBar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_material_ui_AppBar__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_material_ui_IconButton__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_material_ui_IconButton___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_material_ui_IconButton__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_material_ui_icons_Menu__ = __webpack_require__(170);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_material_ui_icons_Menu__ = __webpack_require__(171);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_material_ui_icons_Menu___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_material_ui_icons_Menu__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_material_ui_Toolbar__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_material_ui_Toolbar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_material_ui_Toolbar__);
@@ -5673,9 +5673,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_material_ui_Toolbar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_material_ui_Toolbar__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_material_ui_IconButton__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_material_ui_IconButton___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_material_ui_IconButton__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_material_ui_icons_KeyboardArrowLeft__ = __webpack_require__(167);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_material_ui_icons_KeyboardArrowLeft__ = __webpack_require__(168);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_material_ui_icons_KeyboardArrowLeft___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_material_ui_icons_KeyboardArrowLeft__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_material_ui_icons_KeyboardArrowRight__ = __webpack_require__(168);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_material_ui_icons_KeyboardArrowRight__ = __webpack_require__(169);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_material_ui_icons_KeyboardArrowRight___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11_material_ui_icons_KeyboardArrowRight__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_containers__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_containers___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12_containers__);
@@ -9866,61 +9866,61 @@ module.exports = require("material-ui-icons/Folder");
 /* 167 */
 /***/ (function(module, exports) {
 
-module.exports = require("material-ui-icons/KeyboardArrowLeft");
+module.exports = require("material-ui-icons/InsertDriveFile");
 
 /***/ }),
 /* 168 */
 /***/ (function(module, exports) {
 
-module.exports = require("material-ui-icons/KeyboardArrowRight");
+module.exports = require("material-ui-icons/KeyboardArrowLeft");
 
 /***/ }),
 /* 169 */
 /***/ (function(module, exports) {
 
-module.exports = require("material-ui-icons/LocalMall");
+module.exports = require("material-ui-icons/KeyboardArrowRight");
 
 /***/ }),
 /* 170 */
 /***/ (function(module, exports) {
 
-module.exports = require("material-ui-icons/Menu");
+module.exports = require("material-ui-icons/LocalMall");
 
 /***/ }),
 /* 171 */
 /***/ (function(module, exports) {
 
-module.exports = require("material-ui-icons/People");
+module.exports = require("material-ui-icons/Menu");
 
 /***/ }),
 /* 172 */
 /***/ (function(module, exports) {
 
-module.exports = require("material-ui-icons/Search");
+module.exports = require("material-ui-icons/People");
 
 /***/ }),
 /* 173 */
 /***/ (function(module, exports) {
 
-module.exports = require("material-ui-icons/Settings");
+module.exports = require("material-ui-icons/Search");
 
 /***/ }),
 /* 174 */
 /***/ (function(module, exports) {
 
-module.exports = require("material-ui-icons/Stars");
+module.exports = require("material-ui-icons/Settings");
 
 /***/ }),
 /* 175 */
 /***/ (function(module, exports) {
 
-module.exports = require("material-ui-icons/Store");
+module.exports = require("material-ui-icons/Stars");
 
 /***/ }),
 /* 176 */
 /***/ (function(module, exports) {
 
-module.exports = require("material-ui-icons/insertDriveFile");
+module.exports = require("material-ui-icons/Store");
 
 /***/ }),
 /* 177 */

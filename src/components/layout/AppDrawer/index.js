@@ -16,7 +16,7 @@ import IconSettings from 'material-ui-icons/Settings'
 import IconShops from 'material-ui-icons/Store'
 import IconUsers from 'material-ui-icons/People'
 import IconVendors from 'material-ui-icons/Stars'
-import IconinsertDriveFile from 'material-ui-icons/insertDriveFile'
+import IconInsertDriveFile from 'material-ui-icons/InsertDriveFile'
 
 export const styleSheet = createStyleSheet('AppDrawer', theme => ({
   paper: {
