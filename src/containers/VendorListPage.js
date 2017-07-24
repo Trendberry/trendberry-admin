@@ -29,7 +29,6 @@ class VendorListPageContainer extends Component {
   render() {
     return <VendorListPage {...this.props} />
   }
-
 }
 
 const mapStateToProps = (state) => {

@@ -42,7 +42,6 @@ class ShopListPageContainer extends Component {
   render() {
     return <ShopListPage {...this.props} selectedIndex={this.state.selectedIndex} open={this.state.open} openDeleteDialog={this.handleOpenDeleteDialog} deleteShop={this.handleDeleteShop} onRequestCloseDialog={this.handleRequestCloseDialog} />
   }
-
 }
 
 const mapStateToProps = state => ({

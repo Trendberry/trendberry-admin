@@ -42,7 +42,6 @@ class CategoryListPageContainer extends Component {
   render() {
     return <CategoryListPage {...this.props} selectedIndex={this.state.selectedIndex} open={this.state.open} openDeleteDialog={this.handleOpenDeleteDialog} deleteCategory={this.handleDeleteCategory} onRequestCloseDialog={this.handleRequestCloseDialog} />
   }
-
 }
 
 const mapStateToProps = state => ({

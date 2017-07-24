@@ -29,7 +29,6 @@ class UserListPageContainer extends Component {
   render() {
     return <UserListPage {...this.props} />
   }
-
 }
 
 const mapStateToProps = (state) => {

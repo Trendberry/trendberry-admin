@@ -64,7 +64,7 @@ const ShopListPage = ({ selectedIndex, classes, count, deleteShop, list, open, o
               to={getSortLink('name')}
             >
               Name
-              </MuiTableSortLabel>
+            </MuiTableSortLabel>
           </MuiTableCell>
         )}
         disablePadding

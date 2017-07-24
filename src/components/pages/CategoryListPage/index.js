@@ -64,7 +64,7 @@ const CategoryListPage = ({ selectedIndex, classes, count, deleteCategory, list,
               to={getSortLink('name')}
             >
               Name
-              </MuiTableSortLabel>
+            </MuiTableSortLabel>
           </MuiTableCell>
         )}
         disablePadding
