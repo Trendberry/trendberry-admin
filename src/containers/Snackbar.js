@@ -6,13 +6,10 @@ class SnackbarContainer extends Component {
     open: true,
   }
 
-  // handleClick = () => {
-  //   this.setState({ open: true })
-  // }
-
   handleRequestClose = (event, reason) => {
-    if (reason !== 'clickaway')
+    if (reason !== 'clickaway') {
       this.setState({ open: false })
+    }
   }
 
   render() {

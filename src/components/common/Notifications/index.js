@@ -9,13 +9,11 @@ import { notificationDismiss } from 'store/actions'
 const getter = (obj, propName) => (obj.get ? obj.get(propName) : obj[propName])
 
 const Notifications = (props) => {
-  const { dismiss, notifications } = props
+  const { notifications } = props
 
   const renderedNotifications = notifications.map((notification) => {
     const options = getter(notification, 'options')
     const id = getter(notification, 'id')
-
-    console.log(id)
 
     return (
       <Snackbar

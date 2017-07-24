@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { reduxForm } from 'redux-form'
 import { push } from 'react-router-redux'
-import { notificationSend, notificationDismiss, resourceCreateRequest, resourceUpdateRequest } from 'store/actions'
+import { notificationSend, resourceCreateRequest, resourceUpdateRequest } from 'store/actions'
 import { fromForm, fromEntities } from 'store/selectors'
 import { createValidator, required } from 'services/validation'
 

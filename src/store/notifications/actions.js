@@ -10,7 +10,7 @@ export const NOTIFICATION_CLEAR = 'NOTIFICATION_CLEAR'
  * - if id wasn't specified, a time based id will be generated.``
  */
 
-export const notificationSend = notification => {
+export const notificationSend = (notification) => {
   const payload = assign({}, notification)
   if (!payload.id) {
     payload.id = new Date().getTime()

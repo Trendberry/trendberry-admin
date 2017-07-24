@@ -1,5 +1,5 @@
 import { delay } from 'redux-saga'
-import { all, take, put, call, fork } from 'redux-saga/effects'
+import { take, put, call, fork } from 'redux-saga/effects'
 import * as actions from './actions'
 
 export function* notificationSend(payload) {
@@ -10,7 +10,7 @@ export function* notificationSend(payload) {
 }
 
 export function* watchNotificationSend() {
-   while (true) {
+  while (true) {
     const { payload } = yield take(actions.NOTIFICATION_SEND)
     yield call(notificationSend, payload)
   }
