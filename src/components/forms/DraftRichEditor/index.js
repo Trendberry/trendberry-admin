@@ -6,7 +6,6 @@ import { stateFromHTML } from 'draft-js-import-html'
 // import { stateFromElement } from 'draft-js-import-element'
 
 import { withStyles, createStyleSheet } from 'material-ui/styles'
-import customPropTypes from 'material-ui/utils/customPropTypes'
 import Toolbar from 'material-ui/Toolbar'
 import IconButton from 'material-ui/IconButton'
 import SvgIcon from 'material-ui/SvgIcon'

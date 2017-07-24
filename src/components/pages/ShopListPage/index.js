@@ -114,7 +114,7 @@ ShopListPage.propTypes = {
   onRequestCloseDialog: PropTypes.func.isRequired,
   open: PropTypes.bool.isRequired,
   openDeleteDialog: PropTypes.func.isRequired,
-  selectedIndex: PropTypes.string,
+  selectedIndex: PropTypes.number,
 }
 
 ShopListPage.defulatProps = {

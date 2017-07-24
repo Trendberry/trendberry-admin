@@ -7,7 +7,7 @@ import IconButton from 'material-ui/IconButton'
 import MenuIcon from 'material-ui-icons/Menu'
 import Toolbar from 'material-ui/Toolbar'
 import Typography from 'material-ui/Typography'
-import { AppContent } from 'components'
+import { AppContent, Notifications } from 'components'
 import { AppDrawer } from 'containers'
 
 const styleSheet = createStyleSheet('AppFrame', theme => ({
@@ -139,6 +139,7 @@ const AppFrame = ({ classes, route, title, drawerOpen, handleDrawerClose, handle
     <AppContent>
       {renderRoutes(route.routes)}
     </AppContent>
+    <Notifications />
   </div>
 )
 
