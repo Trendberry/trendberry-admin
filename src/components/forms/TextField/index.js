@@ -4,6 +4,7 @@ import classNames from 'classnames'
 import { withStyles, createStyleSheet } from 'material-ui/styles'
 import MuiInput, { InputLabel as MuiInputLabel } from 'material-ui/Input'
 import MuiFormControl from 'material-ui/Form/FormControl'
+import MuiFormHelperText from 'material-ui/Form/FormHelperText'
 
 const styleSheet = createStyleSheet('TextField', theme => ({
   root: {
@@ -25,6 +26,7 @@ const TextField = (props) => {
     disabled,
     input,
     label,
+    meta,
     multiline,
     required,
     type,
@@ -41,8 +43,10 @@ const TextField = (props) => {
     autoComplete: 'off',
   }
 
+  console.log(props)
+
   return (
-    <MuiFormControl className={className} required={required} disabled={disabled} margin="normal">
+    <MuiFormControl className={className} required={required} disabled={disabled} error={meta.touched && meta.invalid} margin="normal">
       {label && <MuiInputLabel htmlFor={input.name}>{label}</MuiInputLabel>}
       <MuiInput
         id={input.name}
@@ -54,6 +58,7 @@ const TextField = (props) => {
         type={type}
         {...input}
       />
+      {/* {meta.touched && meta.invalid && <MuiFormHelperText>{meta.error}</MuiFormHelperText>} */}
     </MuiFormControl>
   )
 }
