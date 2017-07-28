@@ -8,7 +8,6 @@ import { ConnectedRouter } from 'react-router-redux'
 import createHistory from 'history/createBrowserHistory'
 import Cookies from 'universal-cookie'
 
-import { basename } from 'config'
 import configureStore from 'store/configure'
 import api from 'services/api'
 import App from 'components/App'
@@ -21,9 +20,9 @@ if (token) {
   apiInstance.setToken(token)
 }
 
+const history = createHistory()
 // eslint-disable-next-line no-underscore-dangle
 const initialState = window.__INITIAL_STATE__
-const history = createHistory({ basename })
 const store = configureStore(initialState, { api: apiInstance }, history)
 
 const renderApp = () => (

@@ -20,7 +20,7 @@ import { push } from 'react-router-redux'
 import createHistory from 'history/createMemoryHistory'
 import serialize from 'serialize-javascript'
 
-import { env, port, host, basename } from 'config'
+import { basename, host, env, port } from 'config'
 import { authUserReadRequest, seDevice, setCsrfToken } from 'store/actions'
 import configureStore from 'store/configure'
 import api from 'services/api'
@@ -30,16 +30,13 @@ import Error from 'components/Error'
 import { styleManager } from './mui'
 import routes from './routes'
 
-const renderApp = ({ context, history, location, store }) => {
-  const app = renderToString(
-    <Provider store={store}>
-      <StaticRouter history={history} context={context} location={location}>
-        <App />
-      </StaticRouter>
-    </Provider>
-  )
-  return app
-}
+const renderApp = ({ context, location, store }) => renderToString(
+  <Provider store={store}>
+    <StaticRouter basename={basename} context={context} location={location}>
+      <App />
+    </StaticRouter>
+  </Provider>
+)
 
 const renderHtml = ({ initialState, content }) => {
   const styles = styleManager.sheetsToString()
@@ -120,7 +117,6 @@ app.use((req, res, next) => {
     .then(() => {
       const content = renderApp({
         context,
-        history,
         location,
         store: configureStore(store.getState(), { api: apiInstance }, history),
       })

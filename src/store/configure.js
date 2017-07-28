@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware, compose } from 'redux'
-import { routerMiddleware } from 'react-router-redux'
 import createSagaMiddleware from 'redux-saga'
+import { routerMiddleware } from 'react-router-redux'
 import { isDev, isBrowser } from 'config'
 import middlewares from './middlewares'
 import reducer from './reducer'
