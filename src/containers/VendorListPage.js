@@ -2,40 +2,55 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
-import { fromVendor, fromEntities } from 'store/selectors'
-import { vendorListReadRequest } from 'store/actions'
+import { fromResource, fromEntities } from 'store/selectors'
+import { resourceListReadRequest, resourceDeleteRequest } from 'store/actions'
 import { VendorListPage } from 'components'
 
 class VendorListPageContainer extends Component {
   static get({ store, query }) {
-    let limit = query._limit
-    if (!limit) limit = 15
-
-    const newQuery = {
-      ...query,
-      _limit: limit,
-    }
-
-    return new Promise((resolve, reject) => {
-      store.dispatch(vendorListReadRequest(newQuery, resolve, reject))
-    })
+    return store.dispatch(resourceListReadRequest('vendors', query))
   }
 
   static propTypes = {
     count: PropTypes.number.isRequired,
+    deleteVendorRequest: PropTypes.func.isRequired,
     list: PropTypes.arrayOf(PropTypes.object).isRequired,
   }
 
+  state = {
+    anchorEl: undefined,
+    open: false,
+    selectedIndex: undefined,
+  }
+
+  handleOpenDeleteDialog = (rowIndex, event) => {
+    this.setState({ open: true, anchorEl: event.currentTarget, selectedIndex: rowIndex })
+  }
+
+  handleDeleteVendor = (id) => {
+    this.handleRequestCloseDialog()
+    this.props.deleteVendorRequest(id)
+    // .then((vendor) => {
+    //   // console.log(vendor)
+    // })
+  }
+
+  handleRequestCloseDialog = () => {
+    this.setState({ open: false })
+  }
+
   render() {
-    return <VendorListPage {...this.props} />
+    return <VendorListPage {...this.props} selectedIndex={this.state.selectedIndex} open={this.state.open} openDeleteDialog={this.handleOpenDeleteDialog} deleteVendor={this.handleDeleteVendor} onRequestCloseDialog={this.handleRequestCloseDialog} />
   }
 }
 
-const mapStateToProps = (state) => {
-  return ({
-    list: fromEntities.getList(state, 'vendor', fromVendor.getList(state)),
-    count: fromVendor.getCount(state),
-  })
-}
+const mapStateToProps = state => ({
+  list: fromEntities.getList(state, 'vendors', fromResource.getList(state, 'vendors')),
+  count: fromResource.getCount(state, 'vendors'),
+})
 
-export default connect(mapStateToProps)(VendorListPageContainer)
+const mapDispatchToProps = dispatch => ({
+  deleteVendorRequest: id => dispatch(resourceDeleteRequest('vendors', id)),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(VendorListPageContainer)

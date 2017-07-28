@@ -3,20 +3,21 @@ import PropTypes from 'prop-types'
 import compose from 'recompose/compose'
 import NavLink from 'react-router-dom/NavLink'
 import { withStyles, createStyleSheet } from 'material-ui/styles'
-import List, { ListItem, ListItemText, ListItemIcon } from 'material-ui/List'
+import MuiList, { ListItem as MuiListItem, ListItemText as MuiListItemText, ListItemIcon as MuiListItemIcon } from 'material-ui/List'
 import withWidth, { isWidthUp } from 'material-ui/utils/withWidth'
-import Toolbar from 'material-ui/Toolbar'
-import Drawer from 'material-ui/Drawer'
-import Typography from 'material-ui/Typography'
-import Divider from 'material-ui/Divider'
-import IconCategories from 'material-ui-icons/Folder'
-import IconDashboard from 'material-ui-icons/Dashboard'
-import IconProducts from 'material-ui-icons/LocalMall'
-import IconSettings from 'material-ui-icons/Settings'
-import IconShops from 'material-ui-icons/Store'
-import IconUsers from 'material-ui-icons/People'
-import IconVendors from 'material-ui-icons/Stars'
-import IconInsertDriveFile from 'material-ui-icons/InsertDriveFile'
+import MuiToolbar from 'material-ui/Toolbar'
+import MuiDrawer from 'material-ui/Drawer'
+import MuiTypography from 'material-ui/Typography'
+import MuiDivider from 'material-ui/Divider'
+import MuiIconCategories from 'material-ui-icons/Folder'
+import MuiIconDashboard from 'material-ui-icons/Dashboard'
+import MuiIconProducts from 'material-ui-icons/LocalMall'
+import MuiIconSettings from 'material-ui-icons/Settings'
+import MuiIconShops from 'material-ui-icons/Store'
+import MuiIconUsers from 'material-ui-icons/People'
+import MuiIconVendors from 'material-ui-icons/Stars'
+import MuiIconInsertDriveFile from 'material-ui-icons/InsertDriveFile'
+import MuiIconLibraryAdd from 'material-ui-icons/LibraryAdd'
 
 export const styleSheet = createStyleSheet('AppDrawer', theme => ({
   paper: {
@@ -76,37 +77,42 @@ const links = [
     to: '/',
     label: 'Dashboard',
     exact: true,
-    icon: IconDashboard,
-  },
-  {
-    to: '/categories',
-    label: 'Categories',
-    icon: IconCategories,
-  },
-  {
-    to: '/shops',
-    label: 'Shops',
-    icon: IconShops,
-  },
-  {
-    to: '/vendors',
-    label: 'Vendors',
-    icon: IconVendors,
+    icon: MuiIconDashboard,
   },
   {
     to: '/products',
     label: 'Products',
-    icon: IconProducts,
+    icon: MuiIconProducts,
+  },
+  {
+    to: '/categories',
+    label: 'Categories',
+    icon: MuiIconCategories,
+  },
+  {
+    to: '/vendors',
+    label: 'Vendors',
+    icon: MuiIconVendors,
+  },
+  {
+    to: '/shops',
+    label: 'Shops',
+    icon: MuiIconShops,
   },
   {
     to: '/users',
     label: 'Users',
-    icon: IconUsers,
+    icon: MuiIconUsers,
   },
   {
     to: '/pages',
     label: 'Pages',
-    icon: IconInsertDriveFile,
+    icon: MuiIconInsertDriveFile,
+  },
+  {
+    to: '/import',
+    label: 'Import',
+    icon: MuiIconLibraryAdd,
   },
 ]
 
@@ -114,7 +120,7 @@ const AppDrawer = ({ classes, className, onRequestClose, drawerOpen, width }) =>
   const drawerDocked = isWidthUp('lg', width)
 
   return (
-    <Drawer
+    <MuiDrawer
       className={className}
       classes={{
         paper: classes.paper,
@@ -124,29 +130,29 @@ const AppDrawer = ({ classes, className, onRequestClose, drawerOpen, width }) =>
       onRequestClose={onRequestClose}
     >
       <div className={classes.nav}>
-        <Toolbar className={classes.toolbar}>
+        <MuiToolbar className={classes.toolbar}>
           <NavLink className={classes.title} to="/" onClick={onRequestClose}>
-            <Typography type="title">Trendberry</Typography>
+            <MuiTypography type="title">Trendberry</MuiTypography>
           </NavLink>
-          <Divider absolute />
-        </Toolbar>
-        <List>
+          <MuiDivider absolute />
+        </MuiToolbar>
+        <MuiList>
           {links.map(link => (
-            <ListItem key={link.to} to={link.to} component={NavLink} onClick={onRequestClose} className={classes.listItem} exact={link.exact} button>
-              <ListItemIcon className={classes.listItemIcon}><link.icon /></ListItemIcon>
-              <ListItemText primary={link.label} />
-            </ListItem>
+            <MuiListItem key={link.to} to={link.to} component={NavLink} onClick={onRequestClose} className={classes.listItem} exact={link.exact} button>
+              <MuiListItemIcon className={classes.listItemIcon}><link.icon /></MuiListItemIcon>
+              <MuiListItemText primary={link.label} />
+            </MuiListItem>
           ))}
-        </List>
-        <Divider />
-        <List>
-          <ListItem to="/settings" component={NavLink} onClick={onRequestClose} className={classes.listItem} button>
-            <ListItemIcon className={classes.listItemIcon}><IconSettings /></ListItemIcon>
-            <ListItemText primary="Settings" />
-          </ListItem>
-        </List>
+        </MuiList>
+        <MuiDivider />
+        <MuiList>
+          <MuiListItem to="/settings" component={NavLink} onClick={onRequestClose} className={classes.listItem} button>
+            <MuiListItemIcon className={classes.listItemIcon}><MuiIconSettings /></MuiListItemIcon>
+            <MuiListItemText primary="Settings" />
+          </MuiListItem>
+        </MuiList>
       </div>
-    </Drawer>
+    </MuiDrawer>
   )
 }
 

@@ -9,14 +9,21 @@ import {
   CategoryUpdatePage,
 
   ProductListPage,
+  ProductCreatePage,
+  ProductUpdatePage,
 
   SigninPage,
 
   ShopListPage,
   ShopUpdatePage,
 
+  UserCreatePage,
   UserListPage,
+  UserUpdatePage,
+
+  VendorCreatePage,
   VendorListPage,
+  VendorUpdatePage,
 } from 'containers'
 import { Link } from 'react-router-dom'
 
@@ -75,16 +82,52 @@ const routes = [
             title: 'Vendors',
           },
           {
+            path: '/vendors/create',
+            component: VendorCreatePage,
+            exact: true,
+            title: 'Create vendor',
+          },
+          {
+            path: '/vendors/:id',
+            component: VendorUpdatePage,
+            exact: true,
+            title: 'Update vendor',
+          },
+          {
             path: '/products',
             component: ProductListPage,
             exact: true,
             title: 'Products',
           },
           {
+            path: '/products/create',
+            component: ProductCreatePage,
+            exact: true,
+            title: 'Create product',
+          },
+          {
+            path: '/products/:id',
+            component: ProductUpdatePage,
+            exact: true,
+            title: 'Update product',
+          },
+          {
             path: '/users',
             component: UserListPage,
             exact: true,
             title: 'Users',
+          },
+          {
+            path: '/users/create',
+            component: UserCreatePage,
+            exact: true,
+            title: 'Create user',
+          },
+          {
+            path: '/users/:id',
+            component: UserUpdatePage,
+            exact: true,
+            title: 'Update user',
           },
           {
             path: '/settings',
