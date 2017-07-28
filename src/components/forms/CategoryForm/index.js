@@ -12,7 +12,7 @@ import { DraftRichEditor, TextField } from 'components'
 
 const styleSheet = createStyleSheet('CategoryForm', {
   content: {
-    padding: '0 24px',
+    padding: '0 24px 12px',
   },
   actions: {
     padding: '8px 12px',
