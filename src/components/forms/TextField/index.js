@@ -4,7 +4,7 @@ import classNames from 'classnames'
 import { withStyles, createStyleSheet } from 'material-ui/styles'
 import MuiInput, { InputLabel as MuiInputLabel } from 'material-ui/Input'
 import MuiFormControl from 'material-ui/Form/FormControl'
-import MuiFormHelperText from 'material-ui/Form/FormHelperText'
+// import MuiFormHelperText from 'material-ui/Form/FormHelperText'
 
 const styleSheet = createStyleSheet('TextField', theme => ({
   root: {
@@ -43,8 +43,6 @@ const TextField = (props) => {
     autoComplete: 'off',
   }
 
-  console.log(props)
-
   return (
     <MuiFormControl className={className} required={required} disabled={disabled} error={meta.touched && meta.invalid} margin="normal">
       {label && <MuiInputLabel htmlFor={input.name}>{label}</MuiInputLabel>}
@@ -69,6 +67,10 @@ TextField.propTypes = {
   disabled: PropTypes.bool,
   error: PropTypes.any,
   label: PropTypes.string,
+  meta: PropTypes.shape({
+    touched: PropTypes.bool,
+    error: PropTypes.string,
+  }).isRequired,
   multiline: PropTypes.bool,
   name: PropTypes.string,
   // invalid: PropTypes.bool,

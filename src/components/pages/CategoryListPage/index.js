@@ -39,7 +39,7 @@ const CategoryListPage = ({ selectedIndex, classes, count, deleteCategory, list,
     <Table
       totalRows={count}
       rows={list}
-      title="Categories "
+      title="Categories"
     >
       <TableColumn
         header={({ handleSelectAllClick }) => (
