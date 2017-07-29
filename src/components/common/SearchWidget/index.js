@@ -1,14 +1,13 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { withRouter } from 'react-router'
-import { parse } from 'qs'
+import { parse, stringify } from 'qs'
 import { withStyles, createStyleSheet } from 'material-ui/styles'
 import classNames from 'classnames'
 import IconButton from 'material-ui/IconButton'
 import Input from 'material-ui/Input/Input'
 import IconSearch from 'material-ui-icons/Search'
 import IconClose from 'material-ui-icons/Close'
-import { contructLocation } from 'services/helpers'
 
 const styleSheet = createStyleSheet('SearchWidget', (theme) => {
   return {
@@ -22,6 +21,7 @@ const styleSheet = createStyleSheet('SearchWidget', (theme) => {
       alignItems: 'center',
     },
     field: {
+      height: 48,
       overflow: 'hidden',
       padding: '8px 0 7px',
       transition: `width ${theme.transitions.duration.short}ms ${theme.transitions.easing.easeInOut}`,
@@ -35,7 +35,7 @@ const styleSheet = createStyleSheet('SearchWidget', (theme) => {
     },
     input: {
       display: 'block',
-      margin: '0 !important',
+      // margin: '0 !important',
       width: 240,
       // '&:hover': {
       //   margin: '0 !important',
@@ -95,7 +95,12 @@ class SearchWidget extends Component {
     if (clear) delete query.q
     else query.q = value
 
-    history.push(contructLocation(location, query))
+    history.push({
+      ...location,
+      search: `?${stringify({
+        ...query,
+      })}`,
+    })
   }
 
   handleRequestOpen = () => {
@@ -139,6 +144,7 @@ class SearchWidget extends Component {
           <Input
             className={classes.input}
             value={q}
+            placeholder="Search"
             innerRef={(input) => { this.searchInput = input }}
             onBlur={event => this.handleInputBlur(event)}
             onChange={event => this.handleInputChange(event)}

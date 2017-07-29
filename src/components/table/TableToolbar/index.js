@@ -23,6 +23,7 @@ const styleSheet = createStyleSheet('TableToolbar', theme => ({
   },
   actions: {
     color: theme.palette.text.secondary,
+    display: 'inline-flex',
   },
   title: {
     flex: '0 0 auto',
@@ -44,9 +45,10 @@ const TableToolbar = (props) => {
           : <MuiTypography type="headline">{title}</MuiTypography>}
       </div>
       <div className={classes.spacer} />
-      <div className={classes.actions}>
-        {numSelected > 0 ? contentAlt : content}
-      </div>
+      {numSelected > 0 ?
+        (contentAlt && React.cloneElement(contentAlt, { className: classes.actions })) :
+        (content && React.cloneElement(content, { className: classes.actions }))
+      }
     </MuiToolbar>
   )
 }

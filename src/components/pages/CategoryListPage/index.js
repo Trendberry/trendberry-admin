@@ -19,7 +19,7 @@ import {
   TableSortLabel as MuiTableSortLabel,
 } from 'material-ui/Table'
 import { Table } from 'containers'
-import { TableColumn, TableRowCategoryName } from 'components'
+import { SearchWidget, TableColumn, TableRowCategoryName } from 'components'
 
 const styleSheet = createStyleSheet('CategoryListPage', {
   actionsCell: {
@@ -41,9 +41,12 @@ const CategoryListPage = ({ selectedIndex, classes, count, deleteCategory, list,
       rows={list}
       title="Categories"
       toolbar={(
-        <MuiIconButton aria-label="Add category" to="/categories/create" component={Link}>
-          <MuiIconAdd />
-        </MuiIconButton>
+        <div>
+          <SearchWidget />
+          <MuiIconButton aria-label="Add category" to="/categories/create" component={Link}>
+            <MuiIconAdd />
+          </MuiIconButton>
+        </div>
       )}
     >
       <TableColumn
