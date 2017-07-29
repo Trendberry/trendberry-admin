@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 import 'babel-polyfill'
 import path from 'path'
+import http from 'http'
 import express from 'express'
 import device from 'express-device'
 import forceSSL from 'express-force-ssl'
