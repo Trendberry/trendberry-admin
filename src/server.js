@@ -153,6 +153,7 @@ app.use((err, req, res, next) => {
 if (env === 'production') {
   setInterval(() => {
     http.get('https://trendberry-admin.herokuapp.com/')
+    http.get('https://trendberry-api.herokuapp.com/')
   }, 600000) // every 10 minutes (600000)
 }
 

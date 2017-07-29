@@ -2221,6 +2221,7 @@ app.use(function (err, req, res, next) {
 if (__WEBPACK_IMPORTED_MODULE_20_config__["env"] === 'production') {
   setInterval(function () {
     __WEBPACK_IMPORTED_MODULE_2_http___default.a.get('https://trendberry-admin.herokuapp.com/');
+    __WEBPACK_IMPORTED_MODULE_2_http___default.a.get('https://trendberry-api.herokuapp.com/');
   }, 600000); // every 10 minutes (600000)
 }
 
