@@ -126,6 +126,26 @@ const styleSheet = createStyleSheet('AppFrame', theme => ({
   drawer: {
     width: theme.spacing.unit * 30,
   },
+  userMenuButton: {
+    marginRight: -4,
+  },
+  userMenu: {
+    marginLeft: 12,
+    marginTop: -12,
+  },
+  userName: {
+    alignItems: 'center',
+    display: 'flex',
+    flexDirection: 'row',
+    height: 48,
+    marginTop: -4,
+    outline: 'none',
+    padding: '0 16px',
+    width: '100%',
+  },
+  userDisplayName: {
+    marginRight: 16,
+  },
 }))
 
 const AppFrame = ({ classes, route, title, drawerOpen, handleDrawerClose, handleDrawerToggle, user, ...other }) => (
@@ -137,7 +157,15 @@ const AppFrame = ({ classes, route, title, drawerOpen, handleDrawerClose, handle
         </MuiIconButton>
         {title && <MuiTypography type="title" color="inherit">{title}</MuiTypography>}
         <div className={classes.grow} />
-        <MuiIconButton aria-owns="user-menu" aria-haspopup="true" onClick={other.handleRequestUserMenuOpen}>
+        <MuiIconButton
+          aria-owns="user-menu"
+          aria-haspopup="true"
+          disableRipple
+          onClick={other.handleRequestUserMenuOpen}
+          classes={{
+            root: classes.userMenuButton,
+          }}
+        >
           <MuiAvatar alt={user.displayName} src="/avatar.png" />
         </MuiIconButton>
         <MuiMenu
@@ -145,15 +173,21 @@ const AppFrame = ({ classes, route, title, drawerOpen, handleDrawerClose, handle
           anchorEl={other.userMenuAnchorEl}
           anchorOrigin={{
             horizontal: 'right',
-            vertical: 40,
+            vertical: 'top',
           }}
           transformOrigin={{
             horizontal: 'right',
-            vertical: 40,
+            vertical: 'top',
+          }}
+          classes={{
+            root: classes.userMenu,
           }}
           open={other.userMenuOpen}
           onRequestClose={other.handleRequestUserMenuClose}
         >
+          <div className={classes.userName}>
+            <MuiTypography type="menu" color="inherit" classes={{ root: classes.userDisplayName }}>{user.displayName}</MuiTypography> <MuiAvatar alt={user.displayName} src="/avatar.png" />
+          </div>
           <MuiMenuItem component={Link} to={`/users/${user._id}`}>Profile</MuiMenuItem>
           <MuiMenuItem>Log out</MuiMenuItem>
         </MuiMenu>
