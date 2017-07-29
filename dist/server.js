@@ -2008,8 +2008,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_polyfill___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_polyfill__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_path__ = __webpack_require__(71);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_path___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_path__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_http__ = __webpack_require__(72);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_http___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_http__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_https__ = __webpack_require__(72);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_https___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_https__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_express__ = __webpack_require__(73);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_express___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_express__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_express_device__ = __webpack_require__(74);
@@ -2220,8 +2220,8 @@ app.use(function (err, req, res, next) {
 // keep heroku alive
 if (__WEBPACK_IMPORTED_MODULE_20_config__["env"] === 'production') {
   setInterval(function () {
-    __WEBPACK_IMPORTED_MODULE_2_http___default.a.get('https://trendberry-admin.herokuapp.com/');
-    __WEBPACK_IMPORTED_MODULE_2_http___default.a.get('https://trendberry-api.herokuapp.com/');
+    __WEBPACK_IMPORTED_MODULE_2_https___default.a.get('https://trendberry-admin.herokuapp.com/');
+    __WEBPACK_IMPORTED_MODULE_2_https___default.a.get('https://trendberry-api.herokuapp.com/');
   }, 600000); // every 10 minutes (600000)
 }
 
@@ -2252,7 +2252,7 @@ module.exports = require("path");
 /* 72 */
 /***/ (function(module, exports) {
 
-module.exports = require("http");
+module.exports = require("https");
 
 /***/ }),
 /* 73 */
@@ -9650,6 +9650,26 @@ var styleSheet = Object(__WEBPACK_IMPORTED_MODULE_4_material_ui_styles__["create
     },
     drawer: {
       width: theme.spacing.unit * 30
+    },
+    userMenuButton: {
+      marginRight: -4
+    },
+    userMenu: {
+      marginLeft: 12,
+      marginTop: -12
+    },
+    userName: {
+      alignItems: 'center',
+      display: 'flex',
+      flexDirection: 'row',
+      height: 48,
+      marginTop: -4,
+      outline: 'none',
+      padding: '0 16px',
+      width: '100%'
+    },
+    userDisplayName: {
+      marginRight: 16
     }
   };
 });
@@ -9686,7 +9706,15 @@ var AppFrame = function AppFrame(_ref) {
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: classes.grow }),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           __WEBPACK_IMPORTED_MODULE_6_material_ui_IconButton___default.a,
-          { 'aria-owns': 'user-menu', 'aria-haspopup': 'true', onClick: other.handleRequestUserMenuOpen },
+          {
+            'aria-owns': 'user-menu',
+            'aria-haspopup': 'true',
+            disableRipple: true,
+            onClick: other.handleRequestUserMenuOpen,
+            classes: {
+              root: classes.userMenuButton
+            }
+          },
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_9_material_ui_Avatar___default.a, { alt: user.displayName, src: '/avatar.png' })
         ),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -9696,15 +9724,29 @@ var AppFrame = function AppFrame(_ref) {
             anchorEl: other.userMenuAnchorEl,
             anchorOrigin: {
               horizontal: 'right',
-              vertical: 40
+              vertical: 'top'
             },
             transformOrigin: {
               horizontal: 'right',
-              vertical: 40
+              vertical: 'top'
+            },
+            classes: {
+              root: classes.userMenu
             },
             open: other.userMenuOpen,
             onRequestClose: other.handleRequestUserMenuClose
           },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'div',
+            { className: classes.userName },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              __WEBPACK_IMPORTED_MODULE_10_material_ui_Typography___default.a,
+              { type: 'menu', color: 'inherit', classes: { root: classes.userDisplayName } },
+              user.displayName
+            ),
+            ' ',
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_9_material_ui_Avatar___default.a, { alt: user.displayName, src: '/avatar.png' })
+          ),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             __WEBPACK_IMPORTED_MODULE_12_material_ui_Menu_MenuItem___default.a,
             { component: __WEBPACK_IMPORTED_MODULE_2_react_router_dom_Link___default.a, to: '/users/' + user._id },
