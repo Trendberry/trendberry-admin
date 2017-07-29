@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { matchRoutes } from 'react-router-config'
-import { fromStatus } from 'store/selectors'
+import { fromAuth, fromStatus } from 'store/selectors'
 import { AppFrame } from 'components'
 
 function getTitle(routes, pathname) {
@@ -20,10 +20,13 @@ class AppFrameContainer extends Component {
   static propTypes = {
     location: PropTypes.object.isRequired,
     route: PropTypes.object.isRequired,
+    user: PropTypes.object,
   }
 
   state = {
     drawerOpen: false,
+    userMenuAnchorEl: undefined,
+    userMenuOpen: false,
   }
 
   handleDrawerClose = () => {
@@ -38,6 +41,14 @@ class AppFrameContainer extends Component {
     // this.props.dispatch({ type: 'TOGGLE_THEME_SHADE' })
   }
 
+  handleRequestUserMenuOpen = (event) => {
+    this.setState({ userMenuOpen: true, userMenuAnchorEl: event.currentTarget })
+  }
+
+  handleRequestUserMenuClose = () => {
+    this.setState({ userMenuOpen: false })
+  }
+
   render() {
     const { location, route, ...other } = this.props
     const title = getTitle(route.routes, location.pathname) || route.title || null
@@ -49,6 +60,10 @@ class AppFrameContainer extends Component {
         handleDrawerClose={this.handleDrawerClose}
         drawerOpen={this.state.drawerOpen}
         route={route}
+        userMenuAnchorEl={this.state.userMenuAnchorEl}
+        userMenuOpen={this.state.userMenuOpen}
+        handleRequestUserMenuOpen={this.handleRequestUserMenuOpen}
+        handleRequestUserMenuClose={this.handleRequestUserMenuClose}
         {...other}
       />
     )
@@ -57,6 +72,7 @@ class AppFrameContainer extends Component {
 
 const mapStateToProps = state => ({
   loading: fromStatus.isLoading(state),
+  user: fromAuth.getUser(state),
 })
 
 export default connect(mapStateToProps)(AppFrameContainer)

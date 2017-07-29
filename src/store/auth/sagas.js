@@ -4,42 +4,42 @@ import Cookies from 'universal-cookie'
 import { isBrowser } from 'config'
 import * as actions from './actions'
 
-export function* signinAuth(api, data) {
+export function* signinAuth(api, { data }, { thunk }) {
   try {
-    const { user, token } = yield call([api, api.post], '/auth/signin', data)
+    const details = yield call([api, api.post], '/auth/signin', data)
 
     if (isBrowser) {
       const cookies = new Cookies()
-      cookies.set('token', token)
+      cookies.set('token', details.token)
     }
 
-    yield put(actions.authSigninSuccess({ user, token }))
+    yield put(actions.authSigninSuccess(details, { data }, thunk))
   } catch (e) {
-    yield put(actions.authSigninFailure(e))
+    yield put(actions.authSigninFailure(e, { data }, thunk))
   }
 }
 
 
-export function* readAuthUser(api) {
+export function* readAuthUser(api, payload, { thunk }) {
   try {
     const user = yield call([api, api.get], '/users/me')
-    yield put(actions.authUserReadSuccess(user))
+    yield put(actions.authUserReadSuccess(user, payload, thunk))
   } catch (e) {
-    yield put(actions.authUserReadFailure(e))
+    yield put(actions.authUserReadFailure(e, payload, thunk))
   }
 }
 
 export function* watchAuthSigninRequest(api) {
   while (true) {
-    const { data } = yield take(actions.AUTH_SIGNIN_REQUEST)
-    yield call(signinAuth, api, data)
+    const { payload, meta } = yield take(actions.AUTH_SIGNIN_REQUEST)
+    yield call(signinAuth, api, payload, meta)
   }
 }
 
 export function* watchAuthUserReadRequest(api) {
   while (true) {
-    yield take(actions.AUTH_USER_READ_REQUEST)
-    yield call(readAuthUser, api)
+    const { payload, meta } = yield take(actions.AUTH_USER_READ_REQUEST)
+    yield call(readAuthUser, api, payload, meta)
   }
 }
 

@@ -2,9 +2,10 @@
 // https://github.com/diegohaz/arc/wiki/Example-redux-modules#resource
 import findIndex from 'lodash/findIndex'
 import get from 'lodash/get'
-import { initialState, getResourceState, getList, getCount, getDetail } from './selectors'
+import { initialState, getResourceState, getList, getDetail, getCount } from './selectors'
 import {
   RESOURCE_CREATE_SUCCESS,
+  // RESOURCE_LIST_READ_REQUEST,
   RESOURCE_LIST_READ_SUCCESS,
   RESOURCE_DETAIL_READ_REQUEST,
   RESOURCE_DETAIL_READ_SUCCESS,
@@ -35,8 +36,6 @@ const updateOrDeleteReducer = (state, { type, payload, meta }) => {
             needleIsObject ? { ...list[index], ...payload } : payload,
             ...list.slice(index + 1),
           ],
-          detail: payload,
-          // count: getCount(initialState, resource),
         },
       }
     case RESOURCE_DELETE_SUCCESS:
@@ -57,7 +56,7 @@ const updateOrDeleteReducer = (state, { type, payload, meta }) => {
   }
 }
 
-export default (state = initialState, { type, payload, payloadCount, meta }) => {
+export default (state = initialState, { type, payload, meta }) => {
   const resource = get(meta, 'resource')
 
   if (!resource) {
@@ -81,7 +80,7 @@ export default (state = initialState, { type, payload, payloadCount, meta }) => 
         [resource]: {
           ...getResourceState(state, resource),
           list: payload,
-          count: payloadCount,
+          count: get(meta, 'count'),
         },
       }
 
@@ -104,7 +103,7 @@ export default (state = initialState, { type, payload, payloadCount, meta }) => 
 
     case RESOURCE_UPDATE_SUCCESS:
     case RESOURCE_DELETE_SUCCESS:
-      return updateOrDeleteReducer(state, { type, payload, payloadCount, meta })
+      return updateOrDeleteReducer(state, { type, payload, meta })
 
     default:
       return state

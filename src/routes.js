@@ -35,10 +35,10 @@ const routes = [
     exact: true,
   },
   {
-    component: AppFrame,
+    component: PrivateRoutes,
     routes: [
       {
-        component: PrivateRoutes,
+        component: AppFrame,
         routes: [
           {
             path: '/',

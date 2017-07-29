@@ -51,9 +51,7 @@ const fetchBranchData = (routes, store, req, res) => new Promise((resolve, rejec
   const branch = matchRoutes(routes, req.path)
   const method = req.method.toLowerCase()
 
-  const authpromise = new Promise((resolve, reject) => {
-    store.dispatch(authUserReadRequest(resolve, reject))
-  })
+  const authpromise = store.dispatch(authUserReadRequest())
 
   const promises = branch.map(({ route, match }) => {
     let component = route.component
@@ -153,9 +151,9 @@ app.use((err, req, res, next) => {
 
 // keep heroku alive
 if (env === 'production') {
-  setInterval(function () {
+  setInterval(() => {
     http.get('https://trendberry-admin.herokuapp.com/')
-  }, 600000); // every 10 minutes (600000)
+  }, 600000) // every 10 minutes (600000)
 }
 
 app.listen(port, (error) => {

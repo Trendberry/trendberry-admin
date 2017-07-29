@@ -54,8 +54,8 @@ export const resourceListReadRequest = (resource, params) => ({
 export const resourceListReadSuccess = (resource, { list, count }, request, thunk) => ({
   type: RESOURCE_LIST_READ_SUCCESS,
   payload: list,
-  payloadCount: count,
   meta: {
+    count,
     request,
     thunk,
     resource,

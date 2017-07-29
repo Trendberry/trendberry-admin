@@ -5,19 +5,19 @@ import {
 } from './actions'
 
 
-export default (state = initialState, action) => {
-  switch (action.type) {
+export default (state = initialState, { type, payload }) => {
+  switch (type) {
     case AUTH_SIGNIN_SUCCESS:
       return {
         ...state,
-        user: action.user,
-        token: action.token,
+        user: payload.user,
+        token: payload.token,
       }
 
     case AUTH_USER_READ_SUCCESS:
       return {
         ...state,
-        user: action.user,
+        user: payload,
       }
 
     default:

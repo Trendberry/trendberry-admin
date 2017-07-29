@@ -1,12 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import Link from 'react-router-dom/Link'
 import { renderRoutes } from 'react-router-config'
 import { withStyles, createStyleSheet } from 'material-ui/styles'
-import AppBar from 'material-ui/AppBar'
-import IconButton from 'material-ui/IconButton'
+import MuiAppBar from 'material-ui/AppBar'
+import MuiIconButton from 'material-ui/IconButton'
 import MenuIcon from 'material-ui-icons/Menu'
-import Toolbar from 'material-ui/Toolbar'
-import Typography from 'material-ui/Typography'
+import MuiToolbar from 'material-ui/Toolbar'
+import MuiAvatar from 'material-ui/Avatar'
+import MuiTypography from 'material-ui/Typography'
+import MuiMenu from 'material-ui/Menu'
+import MuiMenuItem from 'material-ui/Menu/MenuItem'
 import { AppContent, Notifications } from 'components'
 import { AppDrawer } from 'containers'
 
@@ -116,21 +120,45 @@ const styleSheet = createStyleSheet('AppFrame', theme => ({
     marginLeft: -12,
     marginRight: 20,
   },
+  grow: {
+    flex: '1 1 auto',
+  },
   drawer: {
     width: theme.spacing.unit * 30,
   },
 }))
 
-const AppFrame = ({ classes, route, title, drawerOpen, handleDrawerClose, handleDrawerToggle }) => (
+const AppFrame = ({ classes, route, title, drawerOpen, handleDrawerClose, handleDrawerToggle, user, ...other }) => (
   <div className={classes.root}>
-    <AppBar position="fixed">
-      <Toolbar>
-        <IconButton onClick={handleDrawerToggle} className={classes.menuButton} color="contrast">
+    <MuiAppBar position="fixed">
+      <MuiToolbar>
+        <MuiIconButton onClick={handleDrawerToggle} className={classes.menuButton} color="contrast">
           <MenuIcon />
-        </IconButton>
-        {title && <Typography type="title" color="inherit">{title}</Typography>}
-      </Toolbar>
-    </AppBar>
+        </MuiIconButton>
+        {title && <MuiTypography type="title" color="inherit">{title}</MuiTypography>}
+        <div className={classes.grow} />
+        <MuiIconButton aria-owns="user-menu" aria-haspopup="true" onClick={other.handleRequestUserMenuOpen}>
+          <MuiAvatar alt={user.displayName} src="/avatar.png" />
+        </MuiIconButton>
+        <MuiMenu
+          id="user-menu"
+          anchorEl={other.userMenuAnchorEl}
+          anchorOrigin={{
+            horizontal: 'right',
+            vertical: 40,
+          }}
+          transformOrigin={{
+            horizontal: 'right',
+            vertical: 40,
+          }}
+          open={other.userMenuOpen}
+          onRequestClose={other.handleRequestUserMenuClose}
+        >
+          <MuiMenuItem component={Link} to={`/users/${user._id}`}>Profile</MuiMenuItem>
+          <MuiMenuItem>Log out</MuiMenuItem>
+        </MuiMenu>
+      </MuiToolbar>
+    </MuiAppBar>
     <AppDrawer
       className={classes.drawer}
       onRequestClose={handleDrawerClose}
@@ -150,6 +178,7 @@ AppFrame.propTypes = {
   handleDrawerToggle: PropTypes.func.isRequired,
   route: PropTypes.object.isRequired,
   title: PropTypes.string,
+  user: PropTypes.object.isRequired,
 }
 
 export default withStyles(styleSheet)(AppFrame)
