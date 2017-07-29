@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import 'babel-polyfill'
 import path from 'path'
-import http from 'http'
+import https from 'https'
 import express from 'express'
 import device from 'express-device'
 import forceSSL from 'express-force-ssl'
@@ -152,8 +152,8 @@ app.use((err, req, res, next) => {
 // keep heroku alive
 if (env === 'production') {
   setInterval(() => {
-    http.get('https://trendberry-admin.herokuapp.com/')
-    http.get('https://trendberry-api.herokuapp.com/')
+    https.get('https://trendberry-admin.herokuapp.com/')
+    https.get('https://trendberry-api.herokuapp.com/')
   }, 600000) // every 10 minutes (600000)
 }
 
