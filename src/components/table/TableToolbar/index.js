@@ -4,9 +4,6 @@ import PropTypes from 'prop-types'
 import { withStyles, createStyleSheet } from 'material-ui/styles'
 import MuiToolbar from 'material-ui/Toolbar'
 import MuiTypography from 'material-ui/Typography'
-import MuiIconButton from 'material-ui/IconButton'
-import MuiDeleteIcon from 'material-ui-icons/Delete'
-import MuiFilterListIcon from 'material-ui-icons/FilterList'
 
 const styleSheet = createStyleSheet('TableToolbar', theme => ({
   root: {
@@ -33,7 +30,7 @@ const styleSheet = createStyleSheet('TableToolbar', theme => ({
 }))
 
 const TableToolbar = (props) => {
-  const { numSelected, classes, title } = props
+  const { content, contentAlt, numSelected, classes, title } = props
 
   return (
     <MuiToolbar
@@ -48,15 +45,7 @@ const TableToolbar = (props) => {
       </div>
       <div className={classes.spacer} />
       <div className={classes.actions}>
-        {numSelected > 0
-          ? <MuiIconButton aria-label="Delete">
-            <MuiDeleteIcon />
-          </MuiIconButton>
-          : (
-            <MuiIconButton aria-label="Filter list">
-              <MuiFilterListIcon />
-            </MuiIconButton>
-          )}
+        {numSelected > 0 ? contentAlt : content}
       </div>
     </MuiToolbar>
   )
@@ -65,11 +54,15 @@ const TableToolbar = (props) => {
 TableToolbar.propTypes = {
   title: PropTypes.string,
   classes: PropTypes.object.isRequired,
+  content: PropTypes.any,
+  contentAlt: PropTypes.any,
   numSelected: PropTypes.number.isRequired,
 }
 
 TableToolbar.defaultProps = {
   title: null,
+  content: null,
+  contentAlt: null,
 }
 
 export default withStyles(styleSheet)(TableToolbar)

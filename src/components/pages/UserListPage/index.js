@@ -6,22 +6,22 @@ import MuiButton from 'material-ui/Button'
 import MuiIconButton from 'material-ui/IconButton'
 import MuiModeEditIcon from 'material-ui-icons/ModeEdit'
 import MuiDeleteIcon from 'material-ui-icons/Delete'
-// import IconMoreVert from 'material-ui-icons/MoreVert'
-// import dateFormat from 'dateformat'
-import MuiDialog, { DialogActions as MuiDialogActions, DialogContent as MuiDialogContent, DialogTitle as MuiDialogTitle } from 'material-ui/Dialog'
-
-
+import MuiCheckbox from 'material-ui/Checkbox'
+import MuiTypography from 'material-ui/Typography'
+import MuiIconAdd from 'material-ui-icons/Add'
+import MuiDialog, {
+  DialogActions as MuiDialogActions,
+  DialogContent as MuiDialogContent,
+  DialogTitle as MuiDialogTitle,
+} from 'material-ui/Dialog'
 import {
   TableCell as MuiTableCell,
   TableSortLabel as MuiTableSortLabel,
 } from 'material-ui/Table'
-import MuiCheckbox from 'material-ui/Checkbox'
-
 import { Table } from 'containers'
 import { TableColumn } from 'components'
-import MuiTypography from 'material-ui/Typography'
 
-export const styleSheet = createStyleSheet('UserListPage', {
+const styleSheet = createStyleSheet('UserListPage', {
   actionsCell: {
     padding: 0,
     paddingRight: 2,
@@ -40,6 +40,11 @@ const UserListPage = ({ selectedIndex, classes, count, deleteUser, list, open, o
       totalRows={count}
       rows={list}
       title="Users"
+      toolbar={(
+        <MuiIconButton aria-label="Add user" to="/users/create" component={Link}>
+          <MuiIconAdd />
+        </MuiIconButton>
+      )}
     >
       <TableColumn
         header={({ handleSelectAllClick }) => (
@@ -98,10 +103,10 @@ const UserListPage = ({ selectedIndex, classes, count, deleteUser, list, open, o
         cell={({ rowIndex }) => (
           <MuiTableCell classes={{ root: classes.actionsCell }} disablePadding style={{ width: '1%' }}>
             <div className={classes.actions}>
-              <MuiIconButton aria-label={`Edit user ${list[rowIndex].name}`} to={`/users/${list[rowIndex]._id}`} component={Link}>
+              <MuiIconButton aria-label={`Edit user ${list[rowIndex].email}`} to={`/users/${list[rowIndex]._id}`} component={Link}>
                 <MuiModeEditIcon />
               </MuiIconButton>
-              <MuiIconButton aria-label={`Detele user ${list[rowIndex].name}`} onClick={event => openDeleteDialog(rowIndex, event)}>
+              <MuiIconButton aria-label={`Detele user ${list[rowIndex].email}`} onClick={event => openDeleteDialog(rowIndex, event)}>
                 <MuiDeleteIcon />
               </MuiIconButton>
             </div>
@@ -113,7 +118,7 @@ const UserListPage = ({ selectedIndex, classes, count, deleteUser, list, open, o
       <MuiDialogTitle>Delete user?</MuiDialogTitle>
       <MuiDialogContent>
         <MuiTypography>
-          You are about to delete user<b> {list[selectedIndex].name}</b>.
+          You are about to delete user<b> {list[selectedIndex].email}</b>.
           <br />Are you sure?
         </MuiTypography>
       </MuiDialogContent>
@@ -136,7 +141,4 @@ UserListPage.propTypes = {
   selectedIndex: PropTypes.number,
 }
 
-UserListPage.defulatProps = {
-  selectedIndex: null,
-}
 export default withStyles(styleSheet)(UserListPage)

@@ -5,9 +5,14 @@ import MuiPaper from 'material-ui/Paper'
 
 import { TableBody, TableHead, TableFooter, TableToolbar } from 'components'
 
-const Table = ({ children, isSelected, numSelected, rows, title, totalRows, ...props }) => (
+const Table = ({ children, isSelected, numSelected, rows, title, toolbar, toolbarAlt, totalRows, ...props }) => (
   <MuiPaper>
-    <TableToolbar title={title} numSelected={numSelected} />
+    <TableToolbar
+      title={title}
+      numSelected={numSelected}
+      content={toolbar}
+      contentAlt={toolbarAlt}
+    />
     <MuiTable>
       <TableHead handleSelectAllClick={props.handleSelectAllClick}>{children}</TableHead>
       <TableBody
@@ -31,7 +36,15 @@ Table.propTypes = {
   numSelected: PropTypes.number.isRequired,
   rows: PropTypes.arrayOf(PropTypes.any).isRequired,
   title: PropTypes.string.isRequired,
+  toolbar: PropTypes.any,
+  toolbarAlt: PropTypes.any,
   totalRows: PropTypes.number.isRequired,
+}
+
+Table.defaultProps = {
+  title: null,
+  toolbar: null,
+  totalRows: null,
 }
 
 export default Table

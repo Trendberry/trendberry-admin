@@ -6,21 +6,22 @@ import MuiButton from 'material-ui/Button'
 import MuiIconButton from 'material-ui/IconButton'
 import MuiModeEditIcon from 'material-ui-icons/ModeEdit'
 import MuiDeleteIcon from 'material-ui-icons/Delete'
-// import IconMoreVert from 'material-ui-icons/MoreVert'
-// import dateFormat from 'dateformat'
-import MuiDialog, { DialogActions as MuiDialogActions, DialogContent as MuiDialogContent, DialogTitle as MuiDialogTitle } from 'material-ui/Dialog'
-
+import MuiCheckbox from 'material-ui/Checkbox'
+import MuiTypography from 'material-ui/Typography'
+import MuiIconAdd from 'material-ui-icons/Add'
+import MuiDialog, {
+  DialogActions as MuiDialogActions,
+  DialogContent as MuiDialogContent,
+  DialogTitle as MuiDialogTitle,
+} from 'material-ui/Dialog'
 import {
   TableCell as MuiTableCell,
   TableSortLabel as MuiTableSortLabel,
 } from 'material-ui/Table'
-import MuiCheckbox from 'material-ui/Checkbox'
-
 import { Table } from 'containers'
 import { TableColumn } from 'components'
-import MuiTypography from 'material-ui/Typography'
 
-export const styleSheet = createStyleSheet('ProductListPage', {
+const styleSheet = createStyleSheet('ProductListPage', {
   actionsCell: {
     padding: 0,
     paddingRight: 2,
@@ -39,6 +40,11 @@ const ProductListPage = ({ selectedIndex, classes, count, deleteProduct, list, o
       totalRows={count}
       rows={list}
       title="Products"
+      toolbar={(
+        <MuiIconButton aria-label="Add product" to="/products/create" component={Link}>
+          <MuiIconAdd />
+        </MuiIconButton>
+      )}
     >
       <TableColumn
         header={({ handleSelectAllClick }) => (

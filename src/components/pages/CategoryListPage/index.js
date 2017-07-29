@@ -6,22 +6,22 @@ import MuiButton from 'material-ui/Button'
 import MuiIconButton from 'material-ui/IconButton'
 import MuiModeEditIcon from 'material-ui-icons/ModeEdit'
 import MuiDeleteIcon from 'material-ui-icons/Delete'
-// import IconMoreVert from 'material-ui-icons/MoreVert'
-// import dateFormat from 'dateformat'
-import MuiDialog, { DialogActions as MuiDialogActions, DialogContent as MuiDialogContent, DialogTitle as MuiDialogTitle } from 'material-ui/Dialog'
-
-
+import MuiCheckbox from 'material-ui/Checkbox'
+import MuiTypography from 'material-ui/Typography'
+import MuiIconAdd from 'material-ui-icons/Add'
+import MuiDialog, {
+  DialogActions as MuiDialogActions,
+  DialogContent as MuiDialogContent,
+  DialogTitle as MuiDialogTitle,
+} from 'material-ui/Dialog'
 import {
   TableCell as MuiTableCell,
   TableSortLabel as MuiTableSortLabel,
 } from 'material-ui/Table'
-import MuiCheckbox from 'material-ui/Checkbox'
-
 import { Table } from 'containers'
 import { TableColumn, TableRowCategoryName } from 'components'
-import MuiTypography from 'material-ui/Typography'
 
-export const styleSheet = createStyleSheet('CategoryListPage', {
+const styleSheet = createStyleSheet('CategoryListPage', {
   actionsCell: {
     padding: 0,
     paddingRight: 2,
@@ -40,6 +40,11 @@ const CategoryListPage = ({ selectedIndex, classes, count, deleteCategory, list,
       totalRows={count}
       rows={list}
       title="Categories"
+      toolbar={(
+        <MuiIconButton aria-label="Add category" to="/categories/create" component={Link}>
+          <MuiIconAdd />
+        </MuiIconButton>
+      )}
     >
       <TableColumn
         header={({ handleSelectAllClick }) => (

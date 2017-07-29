@@ -29,6 +29,9 @@ class UserListPageContainer extends Component {
 
   handleDeleteUser = (id) => {
     this.handleRequestCloseDialog()
+    this.setState({
+      selectedIndex: undefined,
+    })
     this.props.deleteUserRequest(id)
     // .then((user) => {
     //   // console.log(user)

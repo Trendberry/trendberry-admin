@@ -14,6 +14,7 @@ import {
 
   SigninPage,
 
+  ShopCreatePage,
   ShopListPage,
   ShopUpdatePage,
 
@@ -68,6 +69,12 @@ const routes = [
             component: ShopListPage,
             exact: true,
             title: 'Shops',
+          },
+          {
+            path: '/shops/create',
+            component: ShopCreatePage,
+            exact: true,
+            title: 'Create shop',
           },
           {
             path: '/shops/:id',
