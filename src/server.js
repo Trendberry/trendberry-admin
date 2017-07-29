@@ -153,8 +153,8 @@ app.use((err, req, res, next) => {
 
 // keep heroku alive
 if (env === 'production') {
-  setInterval(function() {
-      http.get('https://trendberry-admin.herokuapp.com/')
+  setInterval(function () {
+    http.get('https://trendberry-admin.herokuapp.com/')
   }, 600000); // every 10 minutes (600000)
 }
 
