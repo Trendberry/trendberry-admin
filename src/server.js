@@ -21,6 +21,16 @@ import { push } from 'react-router-redux'
 import createHistory from 'history/createMemoryHistory'
 import serialize from 'serialize-javascript'
 
+import { JssProvider, SheetsRegistry } from 'react-jss'
+import { create } from 'jss'
+import preset from 'jss-preset-default'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import createMuiTheme from 'material-ui/styles/theme'
+import createPalette from 'material-ui/styles/palette'
+import createGenerateClassName from 'material-ui/styles/createGenerateClassName'
+import blue from 'material-ui/colors/blue'
+import pink from 'material-ui/colors/pink'
+
 import { basename, host, env, port } from 'config'
 import { authUserReadRequest, seDevice, setCsrfToken } from 'store/actions'
 import configureStore from 'store/configure'
@@ -28,19 +38,37 @@ import api from 'services/api'
 import App from 'components/App'
 import Html from 'components/Html'
 import Error from 'components/Error'
-import { styleManager } from './mui'
 import routes from './routes'
 
-const renderApp = ({ context, location, store }) => renderToString(
-  <Provider store={store}>
-    <StaticRouter basename={basename} context={context} location={location}>
-      <App />
-    </StaticRouter>
-  </Provider>
-)
+// Configure JSS
+const jss = create(preset())
+jss.options.createGenerateClassName = createGenerateClassName
 
-const renderHtml = ({ initialState, content }) => {
-  const styles = styleManager.sheetsToString()
+const renderApp = ({ context, location, store, sheetsRegistry }) => {
+  // Create a theme instance.
+  const theme = createMuiTheme({
+    palette: createPalette({
+      primary: blue,
+      accent: pink,
+      type: 'light',
+    }),
+  })
+
+  return renderToString(
+    <JssProvider registry={sheetsRegistry} jss={jss}>
+      <MuiThemeProvider theme={theme} sheetsManager={new WeakMap()}>
+        <Provider store={store}>
+          <StaticRouter basename={basename} context={context} location={location}>
+            <App />
+          </StaticRouter>
+        </Provider>
+      </MuiThemeProvider>
+    </JssProvider>
+  )
+}
+
+const renderHtml = ({ initialState, content, sheetsRegistry }) => {
+  const styles = sheetsRegistry ? sheetsRegistry.toString() : ''
   const assets = global.assets
   const state = `window.__INITIAL_STATE__ = ${serialize(initialState)};`
   const html = <Html {...{ styles, assets, state, content }} />
@@ -111,6 +139,7 @@ app.use((req, res, next) => {
   store.dispatch(push(location))
 
   const context = {}
+  const sheetsRegistry = new SheetsRegistry()
 
   return fetchBranchData(routes, store, req, res)
     .then(() => {
@@ -118,6 +147,7 @@ app.use((req, res, next) => {
         context,
         location,
         store: configureStore(store.getState(), { api: apiInstance }, history),
+        sheetsRegistry,
       })
       const initialState = store.getState()
 
@@ -136,7 +166,7 @@ app.use((req, res, next) => {
         }
       } else {
         const initialState = store.getState()
-        res.send(renderHtml({ initialState, content }))
+        res.send(renderHtml({ initialState, content, sheetsRegistry }))
       }
     })
     .catch(next)

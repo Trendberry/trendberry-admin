@@ -127,7 +127,6 @@ const AppDrawer = ({ classes, className, onRequestClose, drawerOpen, width }) =>
       }}
       docked={drawerDocked}
       open={drawerDocked || drawerOpen}
-      onRequestClose={onRequestClose}
     >
       <div className={classes.nav}>
         <MuiToolbar className={classes.toolbar}>
