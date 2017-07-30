@@ -2,11 +2,24 @@ import React, { Component } from 'react'
 import { Switch } from 'react-router-dom'
 import { renderRoutes } from 'react-router-config'
 import Helmet from 'react-helmet'
+
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import createMuiTheme from 'material-ui/styles/theme'
+import createPalette from 'material-ui/styles/palette'
+import blue from 'material-ui/colors/blue'
+import pink from 'material-ui/colors/pink'
 
 import PendingNavDataLoader from './PendingNavDataLoader'
-import { styleManager, theme } from '../mui'
 import routes from '../routes'
+
+// Create a theme instance.
+const theme = createMuiTheme({
+  palette: createPalette({
+    primary: blue,
+    accent: pink,
+    type: 'light',
+  }),
+})
 
 // import { HomePage, SamplePage, NotFoundPage } from 'components'
 // import { GoogleTagManager } from 'containers'
@@ -36,13 +49,13 @@ class App extends Component {
           <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,600,600i,700,700i&subset=cyrillic" rel="stylesheet" />
         </Helmet>
         {/* <GoogleTagManager /> */}
-        <PendingNavDataLoader routes={routes}>
-          <MuiThemeProvider styleManager={styleManager} theme={theme}>
+        <MuiThemeProvider theme={theme}>
+          <PendingNavDataLoader routes={routes}>
             <Switch>
               {renderRoutes(routes)}
             </Switch>
-          </MuiThemeProvider>
-        </PendingNavDataLoader>
+          </PendingNavDataLoader>
+        </MuiThemeProvider>
       </div>
     )
   }

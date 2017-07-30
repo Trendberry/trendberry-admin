@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Link from 'react-router-dom/Link'
 import { renderRoutes } from 'react-router-config'
-import { withStyles, createStyleSheet } from 'material-ui/styles'
+import { withStyles, createStyleSheet, withTheme } from 'material-ui/styles'
 import MuiAppBar from 'material-ui/AppBar'
 import MuiIconButton from 'material-ui/IconButton'
 import MenuIcon from 'material-ui-icons/Menu'
@@ -186,7 +186,7 @@ const AppFrame = ({ classes, route, title, drawerOpen, handleDrawerClose, handle
           onRequestClose={other.handleRequestUserMenuClose}
         >
           <div className={classes.userName}>
-            <MuiTypography type="menu" color="inherit" classes={{ root: classes.userDisplayName }}>{user.displayName}</MuiTypography> <MuiAvatar alt={user.displayName} src="/avatar.png" />
+            <MuiTypography type="subheading" color="inherit" classes={{ root: classes.userDisplayName }}>{user.displayName}</MuiTypography> <MuiAvatar alt={user.displayName} src="/avatar.png" />
           </div>
           <MuiMenuItem component={Link} to={`/users/${user._id}`}>Profile</MuiMenuItem>
           <MuiMenuItem>Log out</MuiMenuItem>
@@ -215,4 +215,4 @@ AppFrame.propTypes = {
   user: PropTypes.object.isRequired,
 }
 
-export default withStyles(styleSheet)(AppFrame)
+export default withTheme(withStyles(styleSheet)(AppFrame))
