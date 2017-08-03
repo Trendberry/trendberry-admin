@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { push } from 'react-router-redux'
 import { connect } from 'react-redux'
 import { matchRoutes } from 'react-router-config'
 import { fromAuth, fromStatus } from 'store/selectors'
+import { authSignoutRequest} from 'store/actions'
 import { AppFrame } from 'components'
 
 function getTitle(routes, pathname) {
@@ -21,6 +23,7 @@ class AppFrameContainer extends Component {
     location: PropTypes.object.isRequired,
     route: PropTypes.object.isRequired,
     user: PropTypes.object,
+    signOut: PropTypes.func.isRequired,
   }
 
   state = {
@@ -49,6 +52,10 @@ class AppFrameContainer extends Component {
     this.setState({ userMenuOpen: false })
   }
 
+  handleSignOut = () => {
+    this.props.signOut()
+  }
+
   render() {
     const { location, route, ...other } = this.props
     const title = getTitle(route.routes, location.pathname) || route.title || null
@@ -64,6 +71,7 @@ class AppFrameContainer extends Component {
         userMenuOpen={this.state.userMenuOpen}
         handleRequestUserMenuOpen={this.handleRequestUserMenuOpen}
         handleRequestUserMenuClose={this.handleRequestUserMenuClose}
+        handleSignOut={this.handleSignOut}
         {...other}
       />
     )
@@ -75,4 +83,14 @@ const mapStateToProps = state => ({
   user: fromAuth.getUser(state),
 })
 
-export default connect(mapStateToProps)(AppFrameContainer)
+const mapDispatchToProps = dispatch => ({
+  signOut: () => {
+    return dispatch(authSignoutRequest())
+    .then(() => {
+      dispatch(push('/signin'))
+    })
+  },
+})
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(AppFrameContainer)

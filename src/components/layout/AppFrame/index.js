@@ -188,8 +188,8 @@ const AppFrame = ({ classes, route, title, drawerOpen, handleDrawerClose, handle
           <div className={classes.userName}>
             <MuiTypography type="subheading" color="inherit" classes={{ root: classes.userDisplayName }}>{user.displayName}</MuiTypography> <MuiAvatar alt={user.displayName} src="/avatar.png" />
           </div>
-          <MuiMenuItem component={Link} to={`/users/${user._id}`}>Profile</MuiMenuItem>
-          <MuiMenuItem>Log out</MuiMenuItem>
+          <MuiMenuItem onClick={other.handleRequestUserMenuClose} component={Link} to={`/users/${user._id}`}>Profile</MuiMenuItem>
+          <MuiMenuItem onClick={other.handleSignOut}>Log out</MuiMenuItem>
         </MuiMenu>
       </MuiToolbar>
     </MuiAppBar>

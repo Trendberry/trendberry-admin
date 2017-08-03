@@ -29,6 +29,18 @@ export function* readAuthUser(api, payload, { thunk }) {
   }
 }
 
+export function* signoutAuth(api, payload, { thunk }) {
+  try {
+    if (isBrowser) {
+      const cookies = new Cookies()
+      cookies.remove('token')
+    }
+    yield put(actions.authSignoutSuccess(payload, thunk))
+  } catch (e) {
+    yield put(actions.authSignoutFailure(e, payload, thunk))
+  }
+}
+
 export function* watchAuthSigninRequest(api) {
   while (true) {
     const { payload, meta } = yield take(actions.AUTH_SIGNIN_REQUEST)
@@ -43,7 +55,15 @@ export function* watchAuthUserReadRequest(api) {
   }
 }
 
+export function* watchAuthSignoutRequest(api) {
+  while (true) {
+    const { payload, meta } = yield take(actions.AUTH_SIGNOUT_REQUEST)
+    yield call(signoutAuth, api, payload, meta)
+  }
+}
+
 export default function* ({ api }) {
   yield fork(watchAuthSigninRequest, api)
   yield fork(watchAuthUserReadRequest, api)
+  yield fork(watchAuthSignoutRequest, api)
 }

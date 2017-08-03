@@ -59,5 +59,4 @@ CategoryForm.defaultProps = {
   id: null,
 }
 
-
 export default withStyles(styleSheet)(CategoryForm)

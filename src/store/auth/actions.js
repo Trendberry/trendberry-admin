@@ -61,3 +61,34 @@ export const authUserReadFailure = (error, request, thunk) => ({
     thunk,
   },
 })
+
+export const AUTH_SIGNOUT = 'AUTH_SIGNOUT'
+export const AUTH_SIGNOUT_REQUEST = 'AUTH_SIGNOUT_REQUEST'
+export const AUTH_SIGNOUT_SUCCESS = 'AUTH_SIGNOUT_SUCCESS'
+export const AUTH_SIGNOUT_FAILURE = 'AUTH_SIGNOUT_FAILURE'
+
+export const authSignoutRequest = () => ({
+  type: AUTH_SIGNOUT_REQUEST,
+  payload: {},
+  meta: {
+    thunk: 'AuthSignOut',
+  },
+})
+
+export const authSignoutSuccess = (request, thunk) => ({
+  type: AUTH_SIGNIN_SUCCESS,
+  payload: {},
+  meta: {
+    request,
+    thunk,
+  },
+})
+
+export const authSignoutFailure = (error, request) => ({
+  type: AUTH_SIGNOUT_FAILURE,
+  error: true,
+  payload: error,
+  meta: {
+    request,
+  },
+})

@@ -16,8 +16,8 @@ import MuiIconSettings from 'material-ui-icons/Settings'
 import MuiIconShops from 'material-ui-icons/Store'
 import MuiIconUsers from 'material-ui-icons/People'
 import MuiIconVendors from 'material-ui-icons/Stars'
-import MuiIconInsertDriveFile from 'material-ui-icons/InsertDriveFile'
-import MuiIconLibraryAdd from 'material-ui-icons/LibraryAdd'
+import MuiIconPages from 'material-ui-icons/InsertDriveFile'
+import MuiIconImport from 'material-ui-icons/LibraryAdd'
 
 export const styleSheet = createStyleSheet('AppDrawer', theme => ({
   paper: {
@@ -107,12 +107,12 @@ const links = [
   {
     to: '/pages',
     label: 'Pages',
-    icon: MuiIconInsertDriveFile,
+    icon: MuiIconPages,
   },
   {
     to: '/import',
     label: 'Import',
-    icon: MuiIconLibraryAdd,
+    icon: MuiIconImport,
   },
 ]
 

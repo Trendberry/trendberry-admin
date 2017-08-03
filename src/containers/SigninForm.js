@@ -28,6 +28,7 @@ const mapStateToProps = state => ({
 export const config = {
   form: 'SigninForm',
   fields: ['usernameOrEmail', 'password'],
+  enableReinitialize: true,
   destroyOnUnmount: false,
   onSubmit,
   validate,
