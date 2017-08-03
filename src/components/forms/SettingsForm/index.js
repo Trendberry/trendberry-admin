@@ -1,0 +1,76 @@
+import React from 'react'
+import PropTypes from 'prop-types'
+import { withStyles, createStyleSheet } from 'material-ui/styles'
+import { Form, Field } from 'redux-form'
+import MuiButton from 'material-ui/Button'
+import Tabs, { Tab } from 'material-ui/Tabs'
+
+import Grid from 'material-ui/Grid'
+import MuiPaper from 'material-ui/Paper'
+import MuiToolbar from 'material-ui/Toolbar'
+import MuiTypography from 'material-ui/Typography'
+import { DraftRichEditor, TextField } from 'components'
+
+const styleSheet = createStyleSheet('SettingsForm', {
+  content: {
+    padding: '0 24px 12px',
+  },
+  actions: {
+    padding: '8px 12px',
+  },
+})
+
+const SettingsForm = ({ id, classes, handleSubmit, handleTabChange, submitting, tabIindex, width }) => {
+  return (
+    <MuiPaper component={Form} onSubmit={handleSubmit} method="POST">
+      <Tabs
+        index={tabIindex}
+        onChange={handleTabChange}
+        indicatorColor="primary"
+        textColor="primary"
+        initalWidth={width}
+      >
+        <Tab label="General" />
+        <Tab label="Products" />
+        <Tab label="Categories" />
+        <Tab label="Vendors" />
+        <Tab label="Shops" />
+        <Tab label="Users" />
+        <Tab label="Pages" />
+        <Tab label="Import" />
+      </Tabs>
+      <div className={classes.content}>
+        {id && <Field name="_id" type="hidden" component="input" />}
+        <Field name="_csrf" type="hidden" component="input" />
+        <Grid container gutter={24}>
+          <Grid item sm={8}>
+            <Field name="name" label="Name" type="text" component={TextField} required />
+            <Field name="description" label="Description" type="textarea" component={TextField} />
+            <DraftRichEditor />
+          </Grid>
+          <Grid item sm={4}>
+            <Field name="slug" type="text" label="Slug" component={TextField} />
+            <Field name="meta.title" type="text" label="Meta Title" component={TextField} />
+            <Field name="meta.description" label="Meta Description" component={TextField} />
+          </Grid>
+        </Grid>
+      </div>
+      <div className={classes.actions}>
+        <MuiButton type="submit" disabled={submitting}>{id ? 'Update' : 'Create'}</MuiButton>
+      </div>
+    </MuiPaper>
+  )
+}
+
+SettingsForm.propTypes = {
+  classes: PropTypes.object.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  id: PropTypes.string,
+  submitting: PropTypes.bool,
+}
+
+SettingsForm.defaultProps = {
+  id: null,
+}
+
+export default withStyles(styleSheet)(SettingsForm)

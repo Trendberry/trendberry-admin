@@ -1,6 +1,6 @@
 import React from 'react'
 import PrivateRoutes from 'components/PrivateRoutes'
-import { HomePage } from 'components'
+import { HomePage, SettingsPage } from 'components'
 import {
   AppFrame,
 
@@ -138,7 +138,7 @@ const routes = [
           },
           {
             path: '/settings',
-            component: () => (<div>Settings</div>),
+            component: SettingsPage,
             exact: true,
             title: 'Settings',
           },
