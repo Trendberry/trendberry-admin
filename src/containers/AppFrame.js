@@ -4,7 +4,7 @@ import { push } from 'react-router-redux'
 import { connect } from 'react-redux'
 import { matchRoutes } from 'react-router-config'
 import { fromAuth, fromStatus } from 'store/selectors'
-import { authSignoutRequest} from 'store/actions'
+import { authSignoutRequest } from 'store/actions'
 import { AppFrame } from 'components'
 
 function getTitle(routes, pathname) {
@@ -86,9 +86,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   signOut: () => {
     return dispatch(authSignoutRequest())
-    .then(() => {
-      dispatch(push('/signin'))
-    })
+      .then(() => {
+        dispatch(push('/signin'))
+      })
   },
 })
 
