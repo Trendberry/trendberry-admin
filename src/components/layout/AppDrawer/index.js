@@ -137,7 +137,7 @@ const AppDrawer = ({ classes, className, onRequestClose, drawerOpen, width }) =>
         </MuiToolbar>
         <MuiList component="div">
           {links.map(link => (
-            <MuiListItem key={link.to} to={link.to} component={NavLink} onClick={onRequestClose} className={classes.listItem} button>
+            <MuiListItem key={link.to} to={link.to} exact={link.exact} component={NavLink} onClick={onRequestClose} className={classes.listItem} button>
               <MuiListItemIcon className={classes.listItemIcon}><link.icon /></MuiListItemIcon>
               <MuiListItemText primary={link.label} />
             </MuiListItem>

@@ -4966,7 +4966,7 @@ var AppDrawer = function AppDrawer(_ref2) {
         links.map(function (link) {
           return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             __WEBPACK_IMPORTED_MODULE_5_material_ui_List__["ListItem"],
-            { key: link.to, to: link.to, component: __WEBPACK_IMPORTED_MODULE_3_react_router_dom_NavLink___default.a, onClick: onRequestClose, className: classes.listItem, button: true },
+            { key: link.to, to: link.to, exact: link.exact, component: __WEBPACK_IMPORTED_MODULE_3_react_router_dom_NavLink___default.a, onClick: onRequestClose, className: classes.listItem, button: true },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               __WEBPACK_IMPORTED_MODULE_5_material_ui_List__["ListItemIcon"],
               { className: classes.listItemIcon },
