@@ -1,11 +1,11 @@
 import React from 'react'
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
-import { withStyles, createStyleSheet } from 'material-ui/styles'
+import { withStyles } from 'material-ui/styles'
 import MuiToolbar from 'material-ui/Toolbar'
 import MuiTypography from 'material-ui/Typography'
 
-const styleSheet = createStyleSheet('TableToolbar', theme => ({
+const styleSheet = theme => ({
   root: {
     paddingRight: 2,
   },
@@ -28,7 +28,7 @@ const styleSheet = createStyleSheet('TableToolbar', theme => ({
   title: {
     flex: '0 0 auto',
   },
-}))
+})
 
 const TableToolbar = (props) => {
   const { content, contentAlt, numSelected, classes, title } = props
@@ -67,4 +67,4 @@ TableToolbar.defaultProps = {
   contentAlt: null,
 }
 
-export default withStyles(styleSheet)(TableToolbar)
+export default withStyles(styleSheet, { name: 'TableToolbar' })(TableToolbar)

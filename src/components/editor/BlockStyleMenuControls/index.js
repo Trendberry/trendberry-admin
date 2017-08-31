@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { withStyles, createStyleSheet } from 'material-ui/styles'
+import { withStyles } from 'material-ui/styles'
 import MuiIconArrowDropDown from 'material-ui-icons/ArrowDropDown'
 import MuiIconArrowDropUp from 'material-ui-icons/ArrowDropUp'
 import MuiButton from 'material-ui/Button'
 import MuiMenu from 'material-ui/Menu/Menu'
 import { StyleMenuItem } from 'components'
 
-const styleSheet = createStyleSheet('BlockStyleMenuControls', () => ({
+const styleSheet = ({
   button: {
     fontSize: '16px',
     fontWeight: 400,
@@ -16,7 +16,7 @@ const styleSheet = createStyleSheet('BlockStyleMenuControls', () => ({
     paddingRight: 16,
     textTransform: 'none',
   },
-}))
+})
 
 class BlockStyleMenuControls extends Component {
   state = {
@@ -84,4 +84,4 @@ BlockStyleMenuControls.propTypes = {
   onToggle: PropTypes.func.isRequired,
 }
 
-export default withStyles(styleSheet)(BlockStyleMenuControls)
+export default withStyles(styleSheet, { name: 'BlockStyleMenuControls' })(BlockStyleMenuControls)

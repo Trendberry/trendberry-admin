@@ -4,11 +4,11 @@ import { Field } from 'redux-form'
 import Card, { CardActions, CardContent, CardHeader } from 'material-ui/Card'
 import Button from 'material-ui/Button'
 import LinearProgress from 'material-ui/Progress/LinearProgress'
-import { withStyles, createStyleSheet } from 'material-ui/styles'
+import { withStyles } from 'material-ui/styles'
 
 import { TextField } from 'components'
 
-const styleSheet = createStyleSheet('SigninForm', {
+const styleSheet = {
   cardActions: {
     boxSizing: 'border-box',
   },
@@ -35,7 +35,7 @@ const styleSheet = createStyleSheet('SigninForm', {
     width: '100%',
     zIndex: 1,
   },
-})
+}
 
 const SigninForm = ({ classes, handleSubmit, submitting }) => (
   <form name="SigninForm" method="POST" onSubmit={handleSubmit}>
@@ -61,4 +61,4 @@ SigninForm.propTypes = {
   submitting: PropTypes.bool,
 }
 
-export default withStyles(styleSheet)(SigninForm)
+export default withStyles(styleSheet, { name: 'SigninForm' })(SigninForm)

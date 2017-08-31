@@ -1,12 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
-import { withStyles, createStyleSheet } from 'material-ui/styles'
+import { withStyles } from 'material-ui/styles'
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
 // import shallowEqual from 'recompose/shallowEqual'
 import { withRouter } from 'react-router'
 
-export const styleSheet = createStyleSheet('AppContent', theme => ({
+export const styleSheet = theme => ({
   content: theme.mixins.gutters({
     paddingBottom: theme.spacing.unit * 3,
     paddingTop: theme.spacing.unit * 10,
@@ -19,7 +19,7 @@ export const styleSheet = createStyleSheet('AppContent', theme => ({
       paddingTop: theme.spacing.unit * 11,
     },
   },
-}))
+})
 
 const AppContent = ({ classes, className, children, location }) => (
   <CSSTransitionGroup
@@ -50,4 +50,4 @@ AppContent.propTypes = {
   location: PropTypes.object.isRequired,
 }
 
-export default withRouter(withStyles(styleSheet)(AppContent))
+export default withRouter(withStyles(styleSheet, { name: 'AppContent' })(AppContent))

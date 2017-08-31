@@ -2,67 +2,64 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { withRouter } from 'react-router'
 import { parse, stringify } from 'qs'
-import { withStyles, createStyleSheet } from 'material-ui/styles'
+import { withStyles } from 'material-ui/styles'
 import classNames from 'classnames'
 import IconButton from 'material-ui/IconButton'
 import Input from 'material-ui/Input/Input'
 import IconSearch from 'material-ui-icons/Search'
 import IconClose from 'material-ui-icons/Close'
 
-const styleSheet = createStyleSheet('SearchWidget', (theme) => {
-  return {
-    root: {
-      display: 'inline-flex',
+const styleSheet = (theme) => ({
+  root: {
+    display: 'inline-flex',
 
-      // flexDirection: 'row',
-      // flexWrap: 'nowrap',
-      // justifyContent: 'flex-start',
-      // alignContent: 'stretch',
-      alignItems: 'center',
+    // flexDirection: 'row',
+    // flexWrap: 'nowrap',
+    // justifyContent: 'flex-start',
+    // alignContent: 'stretch',
+    alignItems: 'center',
+  },
+  field: {
+    height: 48,
+    overflow: 'hidden',
+    padding: '8px 0 7px',
+    transition: `width ${theme.transitions.duration.short}ms ${theme.transitions.easing.easeInOut}`,
+    width: 0,
+    '&:hover': {
+      paddingBottom: 6,
     },
-    field: {
-      height: 48,
-      overflow: 'hidden',
-      padding: '8px 0 7px',
-      transition: `width ${theme.transitions.duration.short}ms ${theme.transitions.easing.easeInOut}`,
-      width: 0,
-      '&:hover': {
-        paddingBottom: 6,
-      },
+  },
+  open: {
+    width: 240,
+  },
+  input: {
+    display: 'block',
+    // margin: '0 !important',
+    width: 240,
+    // '&:hover': {
+    //   margin: '0 !important',
+    // },
+  },
+  button: {
+    verticalAlign: 'middle',
+  },
+  close: {
+    display: 'none',
+    marginLeft: -32,
+    animation: `search-widget-appear ${theme.transitions.duration.short}ms ${theme.transitions.easing.easeInOut}`,
+  },
+  visible: {
+    display: 'inline-flex',
+  },
+  '@keyframes search-widget-appear': {
+    '0%': {
+      opacity: 0,
     },
-    open: {
-      width: 240,
+    '100%': {
+      opacity: 1,
     },
-    input: {
-      display: 'block',
-      // margin: '0 !important',
-      width: 240,
-      // '&:hover': {
-      //   margin: '0 !important',
-      // },
-    },
-    button: {
-      verticalAlign: 'middle',
-    },
-    close: {
-      display: 'none',
-      marginLeft: -32,
-      animation: `search-widget-appear ${theme.transitions.duration.short}ms ${theme.transitions.easing.easeInOut}`,
-    },
-    visible: {
-      display: 'inline-flex',
-    },
-    '@keyframes search-widget-appear': {
-      '0%': {
-        opacity: 0,
-      },
-      '100%': {
-        opacity: 1,
-      },
-    },
-  }
+  },
 })
-
 
 let searchTimeout
 
@@ -158,4 +155,4 @@ class SearchWidget extends Component {
   }
 }
 
-export default withRouter(withStyles(styleSheet)(SearchWidget))
+export default withRouter(withStyles(styleSheet, { name: 'SearchWidget' })(SearchWidget))

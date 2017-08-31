@@ -1,10 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { withStyles, createStyleSheet } from 'material-ui/styles'
+import { withStyles } from 'material-ui/styles'
 import Grid from 'material-ui/Grid'
 import { SigninForm } from 'containers'
 
-const styleSheet = createStyleSheet('SigninPage', {
+const styleSheet = {
   background: {
     background: '#e0e0e0',
     bottom: 0,
@@ -32,7 +32,7 @@ const styleSheet = createStyleSheet('SigninPage', {
     width: '100%',
     zIndex: 2,
   },
-})
+}
 
 const SigninPage = ({ classes }) => (
   <Grid container align="center" justify="center" className={classes.root}>
@@ -49,4 +49,4 @@ SigninPage.propTypes = {
   classes: PropTypes.object.isRequired,
 }
 
-export default withStyles(styleSheet)(SigninPage)
+export default withStyles(styleSheet, { name: 'SigninPage' })(SigninPage)

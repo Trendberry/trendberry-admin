@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import compose from 'recompose/compose'
 import NavLink from 'react-router-dom/NavLink'
-import { withStyles, createStyleSheet } from 'material-ui/styles'
+import { withStyles } from 'material-ui/styles'
 import MuiList, { ListItem as MuiListItem, ListItemText as MuiListItemText, ListItemIcon as MuiListItemIcon } from 'material-ui/List'
 import withWidth, { isWidthUp } from 'material-ui/utils/withWidth'
 import MuiToolbar from 'material-ui/Toolbar'
@@ -19,7 +19,7 @@ import MuiIconVendors from 'material-ui-icons/Stars'
 import MuiIconPages from 'material-ui-icons/InsertDriveFile'
 import MuiIconImport from 'material-ui-icons/LibraryAdd'
 
-export const styleSheet = createStyleSheet('AppDrawer', theme => ({
+export const styleSheet = theme => ({
   paper: {
     width: theme.spacing.unit * 30,
     backgroundColor: theme.palette.background.paper,
@@ -69,7 +69,7 @@ export const styleSheet = createStyleSheet('AppDrawer', theme => ({
       display: 'none',
     },
   },
-}))
+})
 
 
 const links = [
@@ -125,7 +125,7 @@ const AppDrawer = ({ classes, className, onRequestClose, drawerOpen, width }) =>
       classes={{
         paper: classes.paper,
       }}
-      docked={drawerDocked}
+      type={drawerDocked ? 'permanent' : 'temporary'}
       open={drawerDocked || drawerOpen}
     >
       <div className={classes.nav}>
@@ -135,16 +135,16 @@ const AppDrawer = ({ classes, className, onRequestClose, drawerOpen, width }) =>
           </NavLink>
           <MuiDivider absolute />
         </MuiToolbar>
-        <MuiList>
+        <MuiList component="div">
           {links.map(link => (
-            <MuiListItem key={link.to} to={link.to} component={NavLink} onClick={onRequestClose} className={classes.listItem} exact={link.exact} button>
+            <MuiListItem key={link.to} to={link.to} component={NavLink} onClick={onRequestClose} className={classes.listItem} button>
               <MuiListItemIcon className={classes.listItemIcon}><link.icon /></MuiListItemIcon>
               <MuiListItemText primary={link.label} />
             </MuiListItem>
           ))}
         </MuiList>
         <MuiDivider />
-        <MuiList>
+        <MuiList component="div">
           <MuiListItem to="/settings" component={NavLink} onClick={onRequestClose} className={classes.listItem} button>
             <MuiListItemIcon className={classes.listItemIcon}><MuiIconSettings /></MuiListItemIcon>
             <MuiListItemText primary="Settings" />
@@ -165,5 +165,5 @@ AppDrawer.propTypes = {
 
 export default compose(
   withWidth({ resizeInterval: 16.67 }),
-  withStyles(styleSheet)
+  withStyles(styleSheet, { name: 'AppDrawer' })
 )(AppDrawer)

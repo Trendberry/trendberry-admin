@@ -1,12 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
-import { withStyles, createStyleSheet } from 'material-ui/styles'
+import { withStyles } from 'material-ui/styles'
 import MuiInput, { InputLabel as MuiInputLabel } from 'material-ui/Input'
 import MuiFormControl from 'material-ui/Form/FormControl'
 // import MuiFormHelperText from 'material-ui/Form/FormHelperText'
 
-const styleSheet = createStyleSheet('TextField', theme => ({
+const styleSheet = theme => ({
   root: {
     width: '100%',
   },
@@ -17,7 +17,7 @@ const styleSheet = createStyleSheet('TextField', theme => ({
       height: 2,
     },
   },
-}))
+})
 
 const TextField = (props) => {
   const {
@@ -83,4 +83,4 @@ TextField.defaultProps = {
   type: 'text',
 }
 
-export default withStyles(styleSheet)(TextField)
+export default withStyles(styleSheet, { name: 'TextField' })(TextField)

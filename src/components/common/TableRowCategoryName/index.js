@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { withStyles, createStyleSheet } from 'material-ui/styles'
+import { withStyles } from 'material-ui/styles'
 import { easing, duration } from 'material-ui/styles/transitions'
 
-const styleSheet = createStyleSheet('Name', theme => ({
+const styleSheet = (theme) => ({
   ancestor: {
     color: theme.palette.text.secondary,
     display: 'inline-block',
@@ -46,7 +46,7 @@ const styleSheet = createStyleSheet('Name', theme => ({
   'tr:hover $actions': {
     opacity: 1,
   },
-}))
+})
 
 const TableRowCategoryName = ({ item, classes }) => (
   <span className={classes.name}>
@@ -62,4 +62,4 @@ TableRowCategoryName.propTypes = {
   item: PropTypes.object.isRequired,
 }
 
-export default withStyles(styleSheet)(TableRowCategoryName)
+export default withStyles(styleSheet, { name: 'TableRowCategoryName' })(TableRowCategoryName)

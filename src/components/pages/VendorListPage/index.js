@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Link from 'react-router-dom/Link'
-import { withStyles, createStyleSheet } from 'material-ui/styles'
+import { withStyles } from 'material-ui/styles'
 import MuiButton from 'material-ui/Button'
 import MuiIconButton from 'material-ui/IconButton'
 import MuiModeEditIcon from 'material-ui-icons/ModeEdit'
@@ -21,7 +21,7 @@ import {
 import { Table } from 'containers'
 import { SearchWidget, TableColumn } from 'components'
 
-const styleSheet = createStyleSheet('VendorListPage', {
+const styleSheet = {
   actionsCell: {
     padding: 0,
     paddingRight: 2,
@@ -32,7 +32,7 @@ const styleSheet = createStyleSheet('VendorListPage', {
       display: 'block',
     },
   },
-})
+}
 
 const VendorListPage = ({ selectedIndex, classes, count, deleteVendor, list, open, openDeleteDialog, onRequestCloseDialog }) => (
   <div>
@@ -128,4 +128,4 @@ VendorListPage.propTypes = {
 VendorListPage.defulatProps = {
   selectedIndex: null,
 }
-export default withStyles(styleSheet)(VendorListPage)
+export default withStyles(styleSheet, { name: 'VendorListPage' })(VendorListPage)

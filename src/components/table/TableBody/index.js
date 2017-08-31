@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { withStyles, createStyleSheet } from 'material-ui/styles'
 import { withRouter } from 'react-router'
 import {
   TableBody as MuiTableBody,
@@ -8,13 +7,8 @@ import {
   TableCell as MuiTableCell,
 } from 'material-ui/Table'
 
-const styleSheet = createStyleSheet('TableBody', {
-
-})
-
 class TableHead extends Component {
   static propTypes = {
-    classes: PropTypes.object.isRequired,
     children: PropTypes.array.isRequired,
     handleRowClick: PropTypes.func.isRequired,
     isSelected: PropTypes.func.isRequired,
@@ -69,4 +63,4 @@ class TableHead extends Component {
   }
 }
 
-export default withRouter(withStyles(styleSheet)(TableHead))
+export default withRouter(TableHead)

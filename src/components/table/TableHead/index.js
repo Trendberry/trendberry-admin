@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { withStyles, createStyleSheet } from 'material-ui/styles'
+import { withStyles } from 'material-ui/styles'
 import { withRouter } from 'react-router'
 import { parse, stringify } from 'qs'
 import {
@@ -9,7 +9,7 @@ import {
   TableCell as MuiTableCell,
 } from 'material-ui/Table'
 
-const styleSheet = createStyleSheet('TableHead', {
+const styleSheet = {
   '@global': {
     th: {
       fontWeight: 500,
@@ -21,7 +21,7 @@ const styleSheet = createStyleSheet('TableHead', {
   head: {
     height: 56,
   },
-})
+}
 
 class TableHead extends Component {
   static propTypes = {
@@ -97,4 +97,4 @@ class TableHead extends Component {
   }
 }
 
-export default withRouter(withStyles(styleSheet)(TableHead))
+export default withRouter(withStyles(styleSheet, { name: 'TableHead' })(TableHead))

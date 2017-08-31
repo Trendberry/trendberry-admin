@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { withStyles, createStyleSheet } from 'material-ui/styles'
+import { withStyles } from 'material-ui/styles'
 import { Form, Field } from 'redux-form'
 import MuiButton from 'material-ui/Button'
 
@@ -10,14 +10,14 @@ import MuiToolbar from 'material-ui/Toolbar'
 import MuiTypography from 'material-ui/Typography'
 import { TextField } from 'components'
 
-const styleSheet = createStyleSheet('ShopForm', {
+const styleSheet = {
   content: {
     padding: '0 24px 12px',
   },
   actions: {
     padding: '8px 12px',
   },
-})
+}
 
 const ShopForm = ({ id, classes, handleSubmit, submitting }) => {
   return (
@@ -59,4 +59,4 @@ ShopForm.defaultProps = {
   id: null,
 }
 
-export default withStyles(styleSheet)(ShopForm)
+export default withStyles(styleSheet, {name:'ShopForm'})(ShopForm)

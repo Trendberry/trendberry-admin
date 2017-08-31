@@ -4,8 +4,7 @@ import { renderRoutes } from 'react-router-config'
 import Helmet from 'react-helmet'
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import createMuiTheme from 'material-ui/styles/theme'
-import createPalette from 'material-ui/styles/palette'
+import createMuiTheme from 'material-ui/styles/createMuiTheme'
 import blue from 'material-ui/colors/blue'
 import pink from 'material-ui/colors/pink'
 
@@ -14,11 +13,11 @@ import routes from '../routes'
 
 // Create a theme instance.
 const theme = createMuiTheme({
-  palette: createPalette({
+  palette:{
     primary: blue,
     accent: pink,
     type: 'light',
-  }),
+  },
 })
 
 // import { HomePage, SamplePage, NotFoundPage } from 'components'

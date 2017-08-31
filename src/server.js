@@ -25,8 +25,7 @@ import { JssProvider, SheetsRegistry } from 'react-jss'
 import { create } from 'jss'
 import preset from 'jss-preset-default'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import createMuiTheme from 'material-ui/styles/theme'
-import createPalette from 'material-ui/styles/palette'
+import createMuiTheme from 'material-ui/styles/createMuiTheme'
 import createGenerateClassName from 'material-ui/styles/createGenerateClassName'
 import blue from 'material-ui/colors/blue'
 import pink from 'material-ui/colors/pink'
@@ -47,11 +46,11 @@ jss.options.createGenerateClassName = createGenerateClassName
 const renderApp = ({ context, location, store, sheetsRegistry }) => {
   // Create a theme instance.
   const theme = createMuiTheme({
-    palette: createPalette({
+    palette: {
       primary: blue,
       accent: pink,
       type: 'light',
-    }),
+    },
   })
 
   return renderToString(

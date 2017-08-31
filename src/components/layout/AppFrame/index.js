@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Link from 'react-router-dom/Link'
 import { renderRoutes } from 'react-router-config'
-import { withStyles, createStyleSheet, withTheme } from 'material-ui/styles'
+import { withStyles, withTheme } from 'material-ui/styles'
 import MuiAppBar from 'material-ui/AppBar'
 import MuiIconButton from 'material-ui/IconButton'
 import MenuIcon from 'material-ui-icons/Menu'
@@ -14,7 +14,7 @@ import MuiMenuItem from 'material-ui/Menu/MenuItem'
 import { AppContent, Notifications } from 'components'
 import { AppDrawer } from 'containers'
 
-const styleSheet = createStyleSheet('AppFrame', theme => ({
+const styleSheet = theme => ({
   '@global': {
     html: {
       boxSizing: 'border-box',
@@ -146,7 +146,7 @@ const styleSheet = createStyleSheet('AppFrame', theme => ({
   userDisplayName: {
     marginRight: 16,
   },
-}))
+})
 
 const AppFrame = ({ classes, route, title, drawerOpen, handleDrawerClose, handleDrawerToggle, user, ...other }) => (
   <div className={classes.root}>
@@ -215,4 +215,4 @@ AppFrame.propTypes = {
   user: PropTypes.object.isRequired,
 }
 
-export default withTheme(withStyles(styleSheet)(AppFrame))
+export default withTheme(withStyles(styleSheet, {name:'AppFrame'})(AppFrame))

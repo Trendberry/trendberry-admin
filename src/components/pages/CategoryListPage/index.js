@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Link from 'react-router-dom/Link'
-import { withStyles, createStyleSheet } from 'material-ui/styles'
+import { withStyles } from 'material-ui/styles'
 import MuiButton from 'material-ui/Button'
 import MuiIconButton from 'material-ui/IconButton'
 import MuiModeEditIcon from 'material-ui-icons/ModeEdit'
@@ -21,7 +21,7 @@ import {
 import { Table } from 'containers'
 import { SearchWidget, TableColumn, TableRowCategoryName } from 'components'
 
-const styleSheet = createStyleSheet('CategoryListPage', {
+const styleSheet = {
   actionsCell: {
     padding: 0,
     paddingRight: 2,
@@ -32,7 +32,7 @@ const styleSheet = createStyleSheet('CategoryListPage', {
       display: 'block',
     },
   },
-})
+}
 
 const CategoryListPage = ({ selectedIndex, classes, count, deleteCategory, list, open, openDeleteDialog, onRequestCloseDialog }) => (
   <div>
@@ -128,4 +128,4 @@ CategoryListPage.propTypes = {
 CategoryListPage.defulatProps = {
   selectedIndex: null,
 }
-export default withStyles(styleSheet)(CategoryListPage)
+export default withStyles(styleSheet, { name: 'CategoryListPage' })(CategoryListPage)

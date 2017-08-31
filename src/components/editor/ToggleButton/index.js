@@ -1,16 +1,16 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { withStyles, createStyleSheet } from 'material-ui/styles'
+import { withStyles } from 'material-ui/styles'
 import MuiIconButton from 'material-ui/IconButton'
 
-const styleSheet = createStyleSheet('ToggleButton', theme => ({
+const styleSheet = (theme) => ({
   button: {
     color: theme.palette.text.icon,
   },
   active: {
     color: theme.palette.text.secondary,
   },
-}))
+})
 
 class ToggleButton extends Component {
   constructor() {
@@ -48,4 +48,4 @@ ToggleButton.propTypes = {
   style: PropTypes.string.isRequired,
 }
 
-export default withStyles(styleSheet)(ToggleButton)
+export default withStyles(styleSheet, { name: 'ToggleButton' })(ToggleButton)

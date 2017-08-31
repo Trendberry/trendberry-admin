@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { parse, stringify } from 'qs'
 import Link from 'react-router-dom/Link'
-import { withStyles, createStyleSheet } from 'material-ui/styles'
+import { withStyles } from 'material-ui/styles'
 import { withRouter } from 'react-router'
 import Typography from 'material-ui/Typography'
 import Toolbar from 'material-ui/Toolbar'
@@ -35,7 +35,7 @@ function pageLinkPath(location, currentPageNumber) {
   }
 }
 
-const styleSheet = createStyleSheet('TableFooter', theme => ({
+const styleSheet = theme => ({
   toolbar: {
     height: 56,
     paddingRight: 2,
@@ -57,7 +57,7 @@ const styleSheet = createStyleSheet('TableFooter', theme => ({
     marginRight: 8,
   },
   title: { flex: '0 0 auto' },
-}))
+})
 
 class TableFooter extends Component {
   static propTypes = {
@@ -152,4 +152,4 @@ class TableFooter extends Component {
   }
 }
 
-export default withRouter(withStyles(styleSheet)(TableFooter))
+export default withRouter(withStyles(styleSheet, { name: 'TableFooter' })(TableFooter))

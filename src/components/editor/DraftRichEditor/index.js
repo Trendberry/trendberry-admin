@@ -5,7 +5,7 @@ import { stateToHTML } from 'draft-js-export-html'
 // import { stateFromHTML } from 'draft-js-import-html'
 // import { stateFromElement } from 'draft-js-import-element'
 
-import { withStyles, createStyleSheet } from 'material-ui/styles'
+import { withStyles } from 'material-ui/styles'
 import MuiToolbar from 'material-ui/Toolbar'
 import MuiIconFormatBold from 'material-ui-icons/FormatBold'
 import MuiIconFormatItalic from 'material-ui-icons/FormatItalic'
@@ -86,7 +86,7 @@ const LIST_BLOCK_TYPES = [
   { label: 'OL', style: 'ordered-list-item', icon: MuiIconFormatListNumbered },
 ]
 
-const styleSheet = createStyleSheet('DraftRichEditor', theme => ({
+const styleSheet = (theme) => ({
   root: {
     border: `1px solid ${theme.palette.text.divider}`,
   },
@@ -124,7 +124,7 @@ const styleSheet = createStyleSheet('DraftRichEditor', theme => ({
       display: 'none',
     },
   },
-}))
+})
 
 class DraftRichEditor extends Component {
   constructor(props) {
@@ -264,4 +264,4 @@ DraftRichEditor.propTypes = {
   classes: PropTypes.object.isRequired,
 }
 
-export default withStyles(styleSheet)(DraftRichEditor)
+export default withStyles(styleSheet, { name: 'DraftRichEditor' })(DraftRichEditor)

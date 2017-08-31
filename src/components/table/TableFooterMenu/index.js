@@ -1,13 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Link from 'react-router-dom/Link'
-import { withStyles, createStyleSheet } from 'material-ui/styles'
+import { withStyles } from 'material-ui/styles'
 import MuiMenu, { MenuItem as MuiMenuItem } from 'material-ui/Menu'
 import Typography from 'material-ui/Typography'
 import IconButton from 'material-ui/IconButton'
 import IconArrowDropDown from 'material-ui-icons/ArrowDropDown'
 
-const styleSheet = createStyleSheet('TableFooterMenu', {
+const styleSheet = {
   root: {
     display: 'inline-block',
   },
@@ -15,7 +15,7 @@ const styleSheet = createStyleSheet('TableFooterMenu', {
     position: 'absolute',
     right: 36,
   },
-})
+}
 
 const TableFooterMenu = (props) => {
   const {
@@ -77,4 +77,4 @@ TableFooterMenu.propTypes = {
   open: PropTypes.bool.isRequired,
 }
 
-export default withStyles(styleSheet)(TableFooterMenu)
+export default withStyles(styleSheet, { name: 'TableFooterMenu' })(TableFooterMenu)
