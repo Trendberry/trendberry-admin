@@ -28,7 +28,7 @@ const UserForm = ({ id, classes, handleSubmit, submitting }) => {
       <div className={classes.content}>
         {id && <Field name="_id" type="hidden" component="input" />}
         <Field name="_csrf" type="hidden" component="input" />
-        <Grid container gutter={24}>
+        <Grid container spacing={24}>
           <Grid item sm={8}>
             <Field name="displayName" label="Display name" type="text" component={TextField} />
             <Field name="firstname" label="First name" type="text" component={TextField} />
