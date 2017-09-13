@@ -179,12 +179,12 @@ app.use((err, req, res, next) => {
 })
 
 // keep heroku alive
-if (env === 'production') {
-  setInterval(() => {
-    https.get('https://trendberry-admin.herokuapp.com/')
-    https.get('https://trendberry-api.herokuapp.com/')
-  }, 600000) // every 10 minutes (600000)
-}
+// if (env === 'production') {
+//   setInterval(() => {
+//     https.get('https://trendberry-admin.herokuapp.com/')
+//     https.get('https://trendberry-api.herokuapp.com/')
+//   }, 600000) // every 10 minutes (600000)
+// }
 
 app.listen(port, (error) => {
   const boldBlue = text => `\u001b[1m\u001b[34m${text}\u001b[39m\u001b[22m`
