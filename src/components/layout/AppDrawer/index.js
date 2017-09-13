@@ -46,6 +46,9 @@ export const styleSheet = theme => ({
   },
   listItem: {
     color: theme.palette.text.primary,
+    '&:hover': {
+      backgroundColor: theme.palette.text.lightDivider,
+    },
     '&.active $listItemIcon': {
       color: theme.palette.accent.A200,
     },
@@ -137,7 +140,7 @@ const AppDrawer = ({ classes, className, onRequestClose, drawerOpen, width }) =>
         </MuiToolbar>
         <MuiList component="div">
           {links.map(link => (
-            <MuiListItem key={link.to} to={link.to} exact={link.exact} component={NavLink} onClick={onRequestClose} className={classes.listItem} button>
+            <MuiListItem key={link.to} to={link.to} exact={link.exact} component={NavLink} onClick={onRequestClose} className={classes.listItem}>
               <MuiListItemIcon className={classes.listItemIcon}><link.icon /></MuiListItemIcon>
               <MuiListItemText primary={link.label} />
             </MuiListItem>
@@ -145,7 +148,7 @@ const AppDrawer = ({ classes, className, onRequestClose, drawerOpen, width }) =>
         </MuiList>
         <MuiDivider />
         <MuiList component="div">
-          <MuiListItem to="/settings" component={NavLink} onClick={onRequestClose} className={classes.listItem} button>
+          <MuiListItem to="/settings" component={NavLink} onClick={onRequestClose} className={classes.listItem}>
             <MuiListItemIcon className={classes.listItemIcon}><MuiIconSettings /></MuiListItemIcon>
             <MuiListItemText primary="Settings" />
           </MuiListItem>
