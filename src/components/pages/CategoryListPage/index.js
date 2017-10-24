@@ -28,6 +28,7 @@ const styleSheet = {
   },
   actions: {
     display: 'none',
+    whiteSpace: 'nowrap',
     'tr:hover &': {
       display: 'block',
     },
@@ -51,12 +52,12 @@ const CategoryListPage = ({ selectedIndex, classes, count, deleteCategory, list,
     >
       <TableColumn
         header={({ handleSelectAllClick }) => (
-          <MuiTableCell checkbox style={{ width: '1%' }}>
+          <MuiTableCell padding="checkbox" style={{ width: '1%' }}>
             <MuiCheckbox onChange={handleSelectAllClick} />
           </MuiTableCell>
         )}
         cell={({ handleRowClick, isSelected, rowIndex }) => (
-          <MuiTableCell checkbox>
+          <MuiTableCell padding="checkbox">
             <MuiCheckbox onClick={event => handleRowClick(event, list[rowIndex]._id)} checked={isSelected(list[rowIndex]._id)} />
           </MuiTableCell>
         )}
@@ -64,7 +65,7 @@ const CategoryListPage = ({ selectedIndex, classes, count, deleteCategory, list,
       />
       <TableColumn
         header={({ getSortLink, order, sort }) => (
-          <MuiTableCell disablePadding style={{ width: '98%' }}>
+          <MuiTableCell padding="none" style={{ width: '98%' }}>
             <MuiTableSortLabel
               active={sort === 'name'}
               component={Link}
@@ -75,9 +76,9 @@ const CategoryListPage = ({ selectedIndex, classes, count, deleteCategory, list,
             </MuiTableSortLabel>
           </MuiTableCell>
         )}
-        disablePadding
+        padding="none"
         cell={({ rowIndex }) => (
-          <MuiTableCell disablePadding>
+          <MuiTableCell padding="none">
             <TableRowCategoryName item={list[rowIndex]} />
           </MuiTableCell>
         )}
@@ -85,7 +86,7 @@ const CategoryListPage = ({ selectedIndex, classes, count, deleteCategory, list,
       <TableColumn
         header={() => <MuiTableCell />}
         cell={({ rowIndex }) => (
-          <MuiTableCell classes={{ root: classes.actionsCell }} disablePadding>
+          <MuiTableCell classes={{ root: classes.actionsCell }} padding="none">
             <div className={classes.actions}>
               <MuiIconButton aria-label={`Edit category ${list[rowIndex].name}`} to={`/categories/${list[rowIndex]._id}`} component={Link}>
                 <MuiModeEditIcon />

@@ -21,7 +21,8 @@ import { push } from 'react-router-redux'
 import createHistory from 'history/createMemoryHistory'
 import serialize from 'serialize-javascript'
 
-import { JssProvider, SheetsRegistry } from 'react-jss'
+import { SheetsRegistry } from 'react-jss/lib/jss'
+import JssProvider from 'react-jss/lib/JssProvider'
 import { create } from 'jss'
 import preset from 'jss-preset-default'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
@@ -39,11 +40,11 @@ import Html from 'components/Html'
 import Error from 'components/Error'
 import routes from './routes'
 
-// Configure JSS
-const jss = create(preset())
-jss.options.createGenerateClassName = createGenerateClassName
-
 const renderApp = ({ context, location, store, sheetsRegistry }) => {
+  // Configure JSS
+  const jss = create(preset())
+  jss.options.createGenerateClassName = createGenerateClassName
+
   // Create a theme instance.
   const theme = createMuiTheme({
     palette: {
@@ -53,9 +54,10 @@ const renderApp = ({ context, location, store, sheetsRegistry }) => {
     },
   })
 
+
   return renderToString(
     <JssProvider registry={sheetsRegistry} jss={jss}>
-      <MuiThemeProvider theme={theme} sheetsManager={new WeakMap()}>
+      <MuiThemeProvider theme={theme} sheetsManager={new Map()}>
         <Provider store={store}>
           <StaticRouter basename={basename} context={context} location={location}>
             <App />

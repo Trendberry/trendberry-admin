@@ -216,7 +216,7 @@ class DraftRichEditor extends Component {
 
     return (
       <div className={classes.root}>
-        <MuiToolbar className={classes.toolabr} spacing={0}>
+        <MuiToolbar className={classes.toolabr} disableGutters>
           <BlockStyleMenuControls
             blockTypes={BLOCK_TYPES}
             editorState={editorState}

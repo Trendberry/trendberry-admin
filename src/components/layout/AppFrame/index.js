@@ -201,7 +201,7 @@ const AppFrame = ({ classes, route, title, drawerOpen, handleDrawerClose, handle
     <AppContent>
       {renderRoutes(route.routes)}
     </AppContent>
-    <Notifications />
+    {<Notifications />}
   </div>
 )
 
@@ -215,4 +215,4 @@ AppFrame.propTypes = {
   user: PropTypes.object.isRequired,
 }
 
-export default withTheme(withStyles(styleSheet, {name:'AppFrame'})(AppFrame))
+export default withStyles(styleSheet, {name:'AppFrame'})(AppFrame)
