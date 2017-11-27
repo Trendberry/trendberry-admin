@@ -180,7 +180,7 @@ const AppFrame = ({ classes, route, title, drawerOpen, handleDrawerClose, handle
             vertical: 'top',
           }}
           classes={{
-            root: classes.userMenu,
+            paper: classes.userMenu,
           }}
           open={other.userMenuOpen}
           onRequestClose={other.handleRequestUserMenuClose}

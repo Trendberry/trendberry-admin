@@ -6923,7 +6923,7 @@ var AppFrame = function AppFrame(_ref) {
               vertical: 'top'
             },
             classes: {
-              root: classes.userMenu
+              paper: classes.userMenu
             },
             open: other.userMenuOpen,
             onRequestClose: other.handleRequestUserMenuClose
