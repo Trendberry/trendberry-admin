@@ -21,7 +21,7 @@
     "build": "npm run env:prod -- webpack",
     "postinstall": "npm run",
     "heroku-prebuild": "export NPM_CONFIG_PRODUCTION=false",
-    "heroku-postbuild": "export NPM_CONFIG_PRODUCTION=true"
+    "heroku-postbuild": "export NPM_CONFIG_PRODUCTION=true; npm run build"
   },
   "jest": {
     "moduleDirectories": [
