@@ -19,8 +19,8 @@
     "build:copy": "copyfiles public/* public/**/* dist",
     "prebuild": "npm run build:clean && npm run build:copy",
     "build": "npm run env:prod -- webpack",
-    "heroku-prebuild": "heroku config:set NPM_CONFIG_PRODUCTION=false",
-    "heroku-postbuild": "heheroku config:set NPM_CONFIG_PRODUCTION=true"
+    "heroku-prebuild": "export NPM_CONFIG_PRODUCTION=false",
+    "heroku-postbuild": "export NPM_CONFIG_PRODUCTION=true"
   },
   "jest": {
     "moduleDirectories": [
