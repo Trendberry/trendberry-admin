@@ -18,7 +18,10 @@
     "build:clean": "rimraf \"dist/!(.git*|Procfile)**\"",
     "build:copy": "copyfiles public/* public/**/* dist",
     "prebuild": "npm run build:clean && npm run build:copy",
-    "build": "npm run env:prod -- webpack"
+    "build": "npm run env:prod -- webpack",
+    "postinstall": "npm run",
+    "heroku-prebuild": "export NPM_CONFIG_PRODUCTION=false; export NODE_ENV=development; npm install --only=dev --dev",
+    "heroku-postbuild": "export NPM_CONFIG_PRODUCTION=true; export NODE_ENV=production; npm run build"
   },
   "jest": {
     "moduleDirectories": [
