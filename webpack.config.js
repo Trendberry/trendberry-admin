@@ -1,7 +1,9 @@
 const path = require('path')
-const devServer = require('@webpack-blocks/dev-server2')
+const devServer = require('@webpack-blocks/dev-server')
 const splitVendor = require('webpack-blocks-split-vendor')
 const happypack = require('webpack-blocks-happypack')
+const { file, url } = require('@webpack-blocks/assets')
+const babel = require('@webpack-blocks/babel')
 const serverSourceMap = require('webpack-blocks-server-source-map')
 const nodeExternals = require('webpack-node-externals')
 const AssetsByTypePlugin = require('webpack-assets-by-type-plugin')
@@ -10,8 +12,9 @@ const SpawnPlugin = require('webpack-spawn-plugin')
 
 const {
   addPlugins, createConfig, entryPoint, env, setOutput,
-  sourceMaps, defineConstants, webpack, group,
-} = require('@webpack-blocks/webpack2')
+  sourceMaps, defineConstants, group, match, resolve, customConfig
+} = require('@webpack-blocks/webpack')
+const webpack = require('webpack')
 
 const host = process.env.HOST || 'localhost'
 const port = (+process.env.PORT + 1) || 3001
@@ -24,26 +27,38 @@ const clientEntryPath = path.join(sourcePath, 'client.js')
 const serverEntryPath = path.join(sourcePath, 'server.js')
 const devDomain = `http://${host}:${port}/`
 
-const babel = () => () => ({
-  module: {
-    rules: [
-      { test: /\.jsx?$/, exclude: /node_modules/, loader: 'babel-loader' },
-    ],
-  },
-})
+// const babels = () => createConfig([
+//   match(/\.jsx?$/, { exclude: path.resolve('node_modules') }, [
+//     babel()
+//   ])
+// ])
 
-const assets = () => () => ({
-  module: {
-    rules: [
-      { test: /\.(png|jpe?g|svg|woff2?|ttf|eot)$/, loader: 'url-loader?limit=8000' },
-    ],
-  },
-})
+// () => ({
+//   module: {
+//     rules: [
+//       { test: /\.jsx?$/, exclude: /node_modules/, loader: 'babel-loader' },
+//     ],
+//   },
+// })
 
-const resolveModules = modules => () => ({
-  resolve: {
-    modules: [].concat(modules, ['node_modules']),
-  },
+// const assets = () => () => ({
+//   module: {
+//     rules: [
+//       { test: /\.(png|jpe?g|svg|woff2?|ttf|eot)$/, loader: 'url-loader?limit=8000' },
+//     ],
+//   },
+// })
+
+const fonts = () => match(['*.eot', '*.ttf', '*.woff', '*.woff2'], [
+  file()
+])
+
+const assets = () => match(['*.gif', '*.jpg', '*.jpeg', '*.png', '*.svg', '*.webp'], [
+  url({ limit: 10000 })
+])
+
+const resolveModules = modules => resolve({
+  modules: [].concat(modules, ['node_modules']),
 })
 
 const base = () => group([
@@ -62,6 +77,7 @@ const base = () => group([
   happypack([
     babel(),
   ]),
+  fonts(),
   assets(),
   resolveModules(sourceDir),
 
@@ -85,18 +101,18 @@ const server = createConfig([
       raw: true,
     }),
   ]),
-  () => ({
+  customConfig({
     target: 'node',
     externals: [nodeExternals()],
     stats: 'errors-only',
   }),
 
   env('development', [
-    serverSourceMap(),
+    customConfig(serverSourceMap()),
     addPlugins([
       new SpawnPlugin('npm', ['start']),
     ]),
-    () => ({
+    customConfig({
       watch: true,
     }),
   ]),
@@ -132,5 +148,7 @@ const client = createConfig([
     ]),
   ]),
 ])
+
+console.log(client)
 
 module.exports = client

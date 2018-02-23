@@ -1,5 +1,5 @@
 import 'isomorphic-fetch'
-import { stringify } from 'query-string'
+import { stringify } from 'qs'
 import merge from 'lodash/merge'
 import { apiUrl } from 'config'
 
