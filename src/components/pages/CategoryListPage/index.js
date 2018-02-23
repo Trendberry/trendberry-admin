@@ -18,8 +18,7 @@ import {
   TableCell as MuiTableCell,
   TableSortLabel as MuiTableSortLabel,
 } from 'material-ui/Table'
-import { Table } from 'containers'
-import { SearchWidget, TableColumn, TableRowCategoryName } from 'components'
+import { Table, SearchWidget, TableColumn, TableRowCategoryName } from 'components'
 
 const styleSheet = {
   actionsCell: {
