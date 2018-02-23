@@ -8,6 +8,7 @@ const styleSheet = (theme) => ({
     color: theme.palette.text.secondary,
     display: 'inline-block',
     verticalAlign: 'top',
+    whiteSpace: 'nowrap',
     '&:after': {
       background: theme.palette.text.divider,
       borderRadius: '50%',

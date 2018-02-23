@@ -29,7 +29,7 @@ class AlignStyleControls extends Component {
   render() {
     const { blockTypes } = this.props
     return (
-      <div className="RichEditor-controls">
+      <div className="RichEditor-controls" style={{ whiteSpace: 'nowrap' }}>
         {blockTypes.map(type => (
           <ToggleButton
             key={type.label}

@@ -20,8 +20,7 @@ const theme = createMuiTheme({
   },
 })
 
-// import { HomePage, SamplePage, NotFoundPage } from 'components'
-// import { GoogleTagManager } from 'containers'
+import { HomePage, SamplePage, NotFoundPage } from 'components'
 
 class App extends Component {
   componentDidMount() {
