@@ -88,15 +88,15 @@ const LIST_BLOCK_TYPES = [
 
 const styleSheet = (theme) => ({
   root: {
-    border: `1px solid ${theme.palette.text.divider}`,
+    border: `1px solid ${theme.palette.divider}`,
   },
   toolabr: {
-    backgroundColor: theme.palette.text.lightDivider,
-    borderBottom: `1px solid ${theme.palette.text.divider}`,
+    backgroundColor: theme.palette.action.hover,
+    borderBottom: `1px solid ${theme.palette.divider}`,
     height: 56,
   },
   divider: {
-    borderRight: `1px solid ${theme.palette.text.divider}`,
+    borderRight: `1px solid ${theme.palette.divider}`,
     display: 'inline-flex',
     height: 32,
     marginLeft: 12,

@@ -50,10 +50,12 @@ class TableHead extends Component {
   }
 
   render() {
-    const { children, classes, handleSelectAllClick, location, order, sort } = this.props
+    const { children, classes, handleSelectAllClick, location, order, sort, isHeadCheckboxChecked, isHeadCheckboxIntermidiate } = this.props
     const query = parse(location.search.substr(1))
     const sortParam = query._sort || sort
     const orderParam = (query._order && query._order.toLowerCase()) || order
+
+    // console.log(this.props)
 
     return (
       <MuiTableHead>
@@ -67,12 +69,14 @@ class TableHead extends Component {
               const { cell, header, ...other } = child.props
 
               const headerProps = {
-                ...other,
                 classes,
                 getSortLink: this.getSortLink,
                 handleSelectAllClick,
                 order: orderParam,
                 sort: sortParam,
+                checked: isHeadCheckboxChecked,
+                indeterminate: isHeadCheckboxIntermidiate,
+                ...other,
               }
 
               let content

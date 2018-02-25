@@ -23,8 +23,6 @@ import serialize from 'serialize-javascript'
 
 import { SheetsRegistry } from 'react-jss/lib/jss'
 import JssProvider from 'react-jss/lib/JssProvider'
-import { create } from 'jss'
-import preset from 'jss-preset-default'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import createMuiTheme from 'material-ui/styles/createMuiTheme'
 import createGenerateClassName from 'material-ui/styles/createGenerateClassName'
@@ -42,8 +40,7 @@ import routes from './routes'
 
 const renderApp = ({ context, location, store, sheetsRegistry }) => {
   // Configure JSS
-  const jss = create(preset())
-  jss.options.createGenerateClassName = createGenerateClassName
+  const generateClassName = createGenerateClassName()
 
   // Create a theme instance.
   const theme = createMuiTheme({
@@ -54,9 +51,8 @@ const renderApp = ({ context, location, store, sheetsRegistry }) => {
     },
   })
 
-
   return renderToString(
-    <JssProvider registry={sheetsRegistry} jss={jss}>
+    <JssProvider registry={sheetsRegistry} generateClassName={generateClassName}>
       <MuiThemeProvider theme={theme} sheetsManager={new Map()}>
         <Provider store={store}>
           <StaticRouter basename={basename} context={context} location={location}>

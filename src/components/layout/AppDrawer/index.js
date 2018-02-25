@@ -128,13 +128,13 @@ const AppDrawer = ({ classes, className, onRequestClose, drawerOpen, width }) =>
       classes={{
         paper: classes.paper,
       }}
-      type={drawerDocked ? 'permanent' : 'temporary'}
+      variant={drawerDocked ? 'permanent' : 'temporary'}
       open={drawerDocked || drawerOpen}
     >
       <div className={classes.nav}>
         <MuiToolbar className={classes.toolbar}>
           <NavLink className={classes.title} to="/" onClick={onRequestClose}>
-            <MuiTypography type="title">Trendberry</MuiTypography>
+            <MuiTypography variant="title">Trendberry</MuiTypography>
           </NavLink>
           <MuiDivider absolute />
         </MuiToolbar>

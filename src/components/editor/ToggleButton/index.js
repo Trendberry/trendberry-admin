@@ -5,10 +5,10 @@ import MuiIconButton from 'material-ui/IconButton'
 
 const styleSheet = (theme) => ({
   button: {
-    color: theme.palette.text.icon,
+    color: theme.palette.text.hint,
   },
   active: {
-    color: theme.palette.text.secondary,
+    color: theme.palette.text.primary,
   },
 })
 

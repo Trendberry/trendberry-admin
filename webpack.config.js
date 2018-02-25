@@ -27,59 +27,38 @@ const clientEntryPath = path.join(sourcePath, 'client.js')
 const serverEntryPath = path.join(sourcePath, 'server.js')
 const devDomain = `http://${host}:${port}/`
 
-// const babels = () => createConfig([
-//   match(/\.jsx?$/, { exclude: path.resolve('node_modules') }, [
-//     babel()
-//   ])
-// ])
-
-// () => ({
-//   module: {
-//     rules: [
-//       { test: /\.jsx?$/, exclude: /node_modules/, loader: 'babel-loader' },
-//     ],
-//   },
-// })
-
-// const assets = () => () => ({
-//   module: {
-//     rules: [
-//       { test: /\.(png|jpe?g|svg|woff2?|ttf|eot)$/, loader: 'url-loader?limit=8000' },
-//     ],
-//   },
-// })
-
-const fonts = () => match(['*.eot', '*.ttf', '*.woff', '*.woff2'], [
-  file()
-])
-
-const assets = () => match(['*.gif', '*.jpg', '*.jpeg', '*.png', '*.svg', '*.webp'], [
-  url({ limit: 10000 })
-])
-
-const resolveModules = modules => resolve({
-  modules: [].concat(modules, ['node_modules']),
-})
-
 const base = () => group([
   setOutput({
     filename: '[name].js',
     path: outputPath,
     publicPath,
   }),
+
+  addPlugins([
+    new webpack.ProgressPlugin(),
+  ]),
+
+  happypack([
+    babel(),
+  ]),
+
+  match(['*.eot', '*.ttf', '*.woff', '*.woff2'], [
+    file()
+  ]),
+
+  match(['*.gif', '*.jpg', '*.jpeg', '*.png', '*.svg', '*.webp'], [
+    url({ limit: 10000 })
+  ]),
+
+  resolve({
+    extensions: ['.jsx'],
+    modules: [].concat(sourceDir, ['node_modules']),
+  }),
+
   defineConstants({
     'process.env.NODE_ENV': process.env.NODE_ENV,
     'process.env.PUBLIC_PATH': publicPath.replace(/\/$/, ''),
   }),
-  addPlugins([
-    new webpack.ProgressPlugin(),
-  ]),
-  happypack([
-    babel(),
-  ]),
-  fonts(),
-  assets(),
-  resolveModules(sourceDir),
 
   env('development', [
     setOutput({
@@ -148,7 +127,5 @@ const client = createConfig([
     ]),
   ]),
 ])
-
-console.log(client)
 
 module.exports = client

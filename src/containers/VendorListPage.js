@@ -18,13 +18,13 @@ class VendorListPageContainer extends Component {
   }
 
   state = {
-    anchorEl: undefined,
+    // anchorEl: undefined,
     open: false,
     selectedIndex: undefined,
   }
 
   handleOpenDeleteDialog = (rowIndex, event) => {
-    this.setState({ open: true, anchorEl: event.currentTarget, selectedIndex: rowIndex })
+    this.setState({ open: true, selectedIndex: rowIndex })
   }
 
   handleDeleteVendor = (id) => {

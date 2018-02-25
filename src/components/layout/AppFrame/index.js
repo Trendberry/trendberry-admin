@@ -1,5 +1,8 @@
-import React from 'react'
+import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
+import { push } from 'react-router-redux'
+import { connect } from 'react-redux'
+import { matchRoutes } from 'react-router-config'
 import Link from 'react-router-dom/Link'
 import { renderRoutes } from 'react-router-config'
 import { withStyles, withTheme } from 'material-ui/styles'
@@ -13,6 +16,19 @@ import MuiMenu from 'material-ui/Menu'
 import MuiMenuItem from 'material-ui/Menu/MenuItem'
 import { AppContent, Notifications } from 'components'
 import { AppDrawer } from 'containers'
+import { fromAuth, fromStatus } from 'store/selectors'
+import { authSignoutRequest } from 'store/actions'
+
+function getTitle(routes, pathname) {
+  const branch = matchRoutes(routes, pathname)
+  for (let i = branch.length - 1; i >= 0; i -= 1) {
+    if (Object.prototype.hasOwnProperty.call(branch[i].route, 'title')) {
+      return branch[i].route.title
+    }
+  }
+
+  return null
+}
 
 const styleSheet = theme => ({
   '@global': {
@@ -148,71 +164,125 @@ const styleSheet = theme => ({
   },
 })
 
-const AppFrame = ({ classes, route, title, drawerOpen, handleDrawerClose, handleDrawerToggle, user, ...other }) => (
-  <div className={classes.root}>
-    <MuiAppBar position="fixed">
-      <MuiToolbar>
-        <MuiIconButton onClick={handleDrawerToggle} className={classes.menuButton} color="contrast">
-          <MenuIcon />
-        </MuiIconButton>
-        {title && <MuiTypography type="title" color="inherit">{title}</MuiTypography>}
-        <div className={classes.grow} />
-        <MuiIconButton
-          aria-owns="user-menu"
-          aria-haspopup="true"
-          disableRipple
-          onClick={other.handleRequestUserMenuOpen}
-          classes={{
-            root: classes.userMenuButton,
-          }}
-        >
-          <MuiAvatar alt={user.displayName} src="/avatar.png" />
-        </MuiIconButton>
-        <MuiMenu
-          id="user-menu"
-          anchorEl={other.userMenuAnchorEl}
-          anchorOrigin={{
-            horizontal: 'right',
-            vertical: 'top',
-          }}
-          transformOrigin={{
-            horizontal: 'right',
-            vertical: 'top',
-          }}
-          classes={{
-            paper: classes.userMenu,
-          }}
-          open={other.userMenuOpen}
-          onRequestClose={other.handleRequestUserMenuClose}
-        >
-          <div className={classes.userName}>
-            <MuiTypography type="subheading" color="inherit" classes={{ root: classes.userDisplayName }}>{user.displayName}</MuiTypography> <MuiAvatar alt={user.displayName} src="/avatar.png" />
-          </div>
-          <MuiMenuItem onClick={other.handleRequestUserMenuClose} component={Link} to={`/users/${user._id}`}>Profile</MuiMenuItem>
-          <MuiMenuItem onClick={other.handleSignOut}>Log out</MuiMenuItem>
-        </MuiMenu>
-      </MuiToolbar>
-    </MuiAppBar>
-    <AppDrawer
-      className={classes.drawer}
-      onRequestClose={handleDrawerClose}
-      drawerOpen={drawerOpen}
-    />
-    <AppContent>
-      {renderRoutes(route.routes)}
-    </AppContent>
-    {<Notifications />}
-  </div>
-)
+class AppFrame extends PureComponent {
+  static propTypes = {
+    location: PropTypes.object.isRequired,
+    route: PropTypes.object.isRequired,
+    user: PropTypes.object,
+    signOut: PropTypes.func.isRequired,
+    classes: PropTypes.object.isRequired,
+    route: PropTypes.object.isRequired,
+    title: PropTypes.string,
+    user: PropTypes.object.isRequired,
+  }
 
-AppFrame.propTypes = {
-  classes: PropTypes.object.isRequired,
-  drawerOpen: PropTypes.bool.isRequired,
-  handleDrawerClose: PropTypes.func.isRequired,
-  handleDrawerToggle: PropTypes.func.isRequired,
-  route: PropTypes.object.isRequired,
-  title: PropTypes.string,
-  user: PropTypes.object.isRequired,
+  state = {
+    drawerOpen: false,
+    userMenuAnchorEl: undefined,
+    userMenuOpen: false,
+  }
+
+  handleDrawerClose = () => {
+    this.setState({ drawerOpen: false })
+  }
+
+  handleDrawerToggle = () => {
+    this.setState({ drawerOpen: !this.state.drawerOpen })
+  }
+
+  handleToggleShade = () => {
+    // this.props.dispatch({ type: 'TOGGLE_THEME_SHADE' })
+  }
+
+  handleRequestUserMenuOpen = (event) => {
+    this.setState({ userMenuOpen: true, userMenuAnchorEl: event.currentTarget })
+  }
+
+  handleRequestUserMenuClose = () => {
+    this.setState({ userMenuOpen: false })
+  }
+
+  handleSignOut = () => {
+    this.props.signOut()
+  }
+
+  render() {
+    const { location, route, classes, user, ...other } = this.props
+    const { drawerOpen, userMenuAnchorEl, userMenuOpen } = this.state
+    const title = getTitle(route.routes, location.pathname) || route.title || null
+
+    return (
+      <div className={classes.root}>
+        <MuiAppBar position="fixed">
+          <MuiToolbar>
+            <MuiIconButton onClick={this.handleDrawerToggle} className={classes.menuButton} color="inherit">
+              <MenuIcon />
+            </MuiIconButton>
+            {title && <MuiTypography variant="title" color="inherit">{title}</MuiTypography>}
+            <div className={classes.grow} />
+            <MuiIconButton
+              aria-owns="user-menu"
+              aria-haspopup="true"
+              disableRipple
+              onClick={this.handleRequestUserMenuOpen}
+              classes={{
+                root: classes.userMenuButton,
+              }}
+            >
+              <MuiAvatar alt={user.displayName} src="/avatar.png" />
+            </MuiIconButton>
+            <MuiMenu
+              id="user-menu"
+              anchorEl={userMenuAnchorEl}
+              anchorOrigin={{
+                horizontal: 'right',
+                vertical: 'top',
+              }}
+              transformOrigin={{
+                horizontal: 'right',
+                vertical: 'top',
+              }}
+              classes={{
+                paper: classes.userMenu,
+              }}
+              open={userMenuOpen}
+              onClose={this.handleRequestUserMenuClose}
+            >
+              <div className={classes.userName}>
+                <MuiTypography type="subheading" color="inherit" classes={{ root: classes.userDisplayName }}>{user.displayName}</MuiTypography> <MuiAvatar alt={user.displayName} src="/avatar.png" />
+              </div>
+              <MuiMenuItem onClick={this.handleRequestUserMenuClose} component={Link} to={`/users/${user._id}`}>Profile</MuiMenuItem>
+              <MuiMenuItem onClick={this.handleSignOut}>Log out</MuiMenuItem>
+            </MuiMenu>
+          </MuiToolbar>
+        </MuiAppBar>
+        <AppDrawer
+          className={classes.drawer}
+          onRequestClose={this.handleDrawerClose}
+          drawerOpen={drawerOpen}
+        />
+        <AppContent>
+          {renderRoutes(route.routes)}
+        </AppContent>
+        {<Notifications />}
+      </div>
+    )
+  }
 }
 
-export default withStyles(styleSheet, {name:'AppFrame'})(AppFrame)
+const mapStateToProps = state => ({
+  loading: fromStatus.isLoading(state),
+  user: fromAuth.getUser(state),
+})
+
+const mapDispatchToProps = dispatch => ({
+  signOut: () => {
+    return dispatch(authSignoutRequest())
+      .then(() => {
+        dispatch(push('/signin'))
+      })
+  },
+})
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styleSheet, { name: 'AppFrame' })(AppFrame))

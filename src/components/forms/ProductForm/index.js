@@ -23,7 +23,7 @@ const ProductForm = ({ id, classes, handleSubmit, submitting }) => {
   return (
     <MuiPaper component={Form} onSubmit={handleSubmit} method="POST">
       <MuiToolbar>
-        <MuiTypography type="headline">{id ? 'Update' : 'Create'} product</MuiTypography>
+        <MuiTypography variant="headline">{id ? 'Update' : 'Create'} product</MuiTypography>
       </MuiToolbar>
       <div className={classes.content}>
         {id && <Field name="_id" type="hidden" component="input" />}

@@ -1,8 +1,7 @@
 import React from 'react'
 import PrivateRoutes from 'components/PrivateRoutes'
-import { HomePage } from 'components'
+import { AppFrame, HomePage, VendorListPage } from 'components'
 import {
-  AppFrame,
 
   CategoryCreatePage,
   CategoryListPage,
@@ -23,7 +22,6 @@ import {
   UserUpdatePage,
 
   VendorCreatePage,
-  VendorListPage,
   VendorUpdatePage,
 } from 'containers'
 import { Link } from 'react-router-dom'

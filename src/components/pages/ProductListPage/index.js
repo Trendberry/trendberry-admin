@@ -37,7 +37,7 @@ const styleSheet = {
 const ProductListPage = ({ selectedIndex, classes, count, deleteProduct, list, open, openDeleteDialog, onRequestCloseDialog }) => (
   <div>
     <Table
-      totalRows={count}
+      count={count}
       rows={list}
       title="Products"
       toolbar={(
@@ -50,11 +50,12 @@ const ProductListPage = ({ selectedIndex, classes, count, deleteProduct, list, o
       )}
     >
       <TableColumn
-        header={({ handleSelectAllClick }) => (
+        header={({ handleSelectAllClick, indeterminate, checked, ...other }) => {
+          return(
           <MuiTableCell padding="checkbox" style={{ width: '1%' }}>
-            <MuiCheckbox onChange={handleSelectAllClick} />
+            <MuiCheckbox onChange={handleSelectAllClick} indeterminate={indeterminate} checked={checked} />
           </MuiTableCell>
-        )}
+        )}}
         cell={({ handleRowClick, isSelected, rowIndex }) => (
           <MuiTableCell padding="checkbox">
             <MuiCheckbox onClick={event => handleRowClick(event, list[rowIndex]._id)} checked={isSelected(list[rowIndex]._id)} />
@@ -83,7 +84,7 @@ const ProductListPage = ({ selectedIndex, classes, count, deleteProduct, list, o
         )}
       />
       <TableColumn
-        header={() => <MuiTableCell />}
+        header={() => <MuiTableCell style={{ width: '1%' }} />}
         cell={({ rowIndex }) => (
           <MuiTableCell classes={{ root: classes.actionsCell }} padding="none">
             <div className={classes.actions}>

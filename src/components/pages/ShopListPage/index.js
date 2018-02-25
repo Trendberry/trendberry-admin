@@ -37,7 +37,7 @@ const styleSheet = {
 const ShopListPage = ({ selectedIndex, classes, count, deleteShop, list, open, openDeleteDialog, onRequestCloseDialog }) => (
   <div>
     <Table
-      totalRows={count}
+      count={count}
       rows={list}
       title="Shops"
       toolbar={(
@@ -83,7 +83,7 @@ const ShopListPage = ({ selectedIndex, classes, count, deleteShop, list, open, o
         )}
       />
       <TableColumn
-        header={() => <MuiTableCell />}
+        header={() => <MuiTableCell style={{ width: '1%' }} />}
         cell={({ rowIndex }) => (
           <MuiTableCell classes={{ root: classes.actionsCell }} padding="none">
             <div className={classes.actions}>

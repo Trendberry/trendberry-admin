@@ -10,7 +10,7 @@ const styleSheet = (theme) => ({
     verticalAlign: 'top',
     whiteSpace: 'nowrap',
     '&:after': {
-      background: theme.palette.text.divider,
+      background: theme.palette.divider,
       borderRadius: '50%',
       display: 'inline-block',
       content: '""',

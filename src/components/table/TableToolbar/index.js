@@ -41,8 +41,8 @@ const TableToolbar = (props) => {
     >
       <div className={classes.title}>
         {numSelected > 0
-          ? <MuiTypography color="inherit" type="subheading">{numSelected} selected</MuiTypography>
-          : <MuiTypography type="headline">{title}</MuiTypography>}
+          ? <MuiTypography color="inherit" variant="subheading">{numSelected} selected</MuiTypography>
+          : <MuiTypography variant="headline">{title}</MuiTypography>}
       </div>
       <div className={classes.spacer} />
       {numSelected > 0 ?
